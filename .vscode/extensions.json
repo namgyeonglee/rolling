@@ -1,0 +1,9 @@
+{
+  // 추천 익스텐션
+  "recommendations": [
+    // eslint
+    "dbaeumer.vscode-eslint",
+    // prettier
+    "esbenp.prettier-vscode"
+  ]
+}
