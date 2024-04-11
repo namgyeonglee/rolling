@@ -3,5 +3,5 @@ export function ListPage() {
     <>
       <div>{`Hi I'm ListPage`}</div>
     </>
-  )
+  );
 }

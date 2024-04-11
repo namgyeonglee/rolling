@@ -3,5 +3,5 @@ export function HomePage() {
     <>
       <div>{`Hi I'm Homepage`}</div>
     </>
-  )
+  );
 }
