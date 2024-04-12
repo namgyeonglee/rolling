@@ -15,92 +15,92 @@ export const Bold28 = css`
 
 export const Bold24 = css`
   ${common}
-  fonst-size: 2.4rem;
+  font-size: 2.4rem;
   font-weight: 700;
-  font-height: 3.6rem;
+  line-height: 3.6rem;
 `;
 
 export const Regular24 = css`
   ${common}
-  fonst-size: 2.4rem;
+  font-size: 2.4rem;
   font-weight: 400;
-  font-height: 3.6rem;
+  line-height: 3.6rem;
 `;
 
 export const Bold20 = css`
   ${common}
-  fonst-size: 2rem;
+  font-size: 2rem;
   font-weight: 700;
-  font-height: 3rem;
+  line-height: 3rem;
 `;
 
 export const Regular20 = css`
   ${common}
-  fonst-size: 2rem;
+  font-size: 2rem;
   font-weight: 400;
-  font-height: 3rem;
+  line-height: 3rem;
 `;
 
 export const Bold18 = css`
   ${common}
-  fonst-size: 1.8rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  font-height: 2.8rem;
+  line-height: 2.8rem;
 `;
 
 export const Regular18 = css`
   ${common}
-  fonst-size: 1.8rem;
+  font-size: 1.8rem;
   font-weight: 400;
-  font-height: 2.8rem;
+  line-height: 2.8rem;
 `;
 
 export const Bold16 = css`
   ${common}
-  fonst-size: 1.6rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  font-height: 2.6rem;
+  line-height: 2.6rem;
 `;
 
 export const Regular16 = css`
   ${common}
-  fonst-size: 1.6rem;
+  font-size: 1.6rem;
   font-weight: 400;
-  font-height: 2.6rem;
+  line-height: 2.6rem;
 `;
 
 export const Bold15 = css`
   ${common}
-  fonst-size: 1.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  font-height: 2.2rem;
+  line-height: 2.2rem;
 `;
 
 export const Regular15 = css`
   ${common}
-  fonst-size: 1.5rem;
+  font-size: 1.5rem;
   font-weight: 400;
-  font-height: 2.2rem;
+  line-height: 2.2rem;
 `;
 
 export const Bold14 = css`
   ${common}
-  fonst-size: 1.4rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  font-height: 2rem;
+  line-height: 2rem;
 `;
 
 export const Regular14 = css`
   ${common}
-  fonst-size: 1.4rem;
+  font-size: 1.4rem;
   font-weight: 400;
-  font-height: 2rem;
+  line-height: 2rem;
 `;
 
 export const Regular12 = css`
   ${common}
-  fonst-size: 1.2rem;
+  font-size: 1.2rem;
   font-weight: 400;
-  font-height: 1.8rem;
+  line-height: 1.8rem;
   letter-spacing: -0.014rem;
 `;
