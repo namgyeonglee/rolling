@@ -124,5 +124,10 @@ export function ListPage() {
         <MovePageButton moveLink="/post" btnName="나도 만들어보기" />
       </ButtonContainer>
     </>
+<<<<<<< HEAD
   );
 }
+=======
+  )
+}
+>>>>>>> f5258dfca3cb5ab97d56d98cbeb0d12b3404a54e

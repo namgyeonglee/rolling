@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import reset from "./Reset";
 
-const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   :root {
     --purple100: #f8f0ff;
     --purple200: #ecd9ff;
@@ -46,16 +45,4 @@ const GlobalStyles = createGlobalStyle`
     --error: #dc3a3a;
     --surface: #f6f8ff;
   }
-
-  ${reset}
-
-  html {
-    font-size: 62.5%;
-  }
-
-  body {
-    font-size: 62.5%;
-    font-family: 'Pretendard';
-  }
 `;
-export default GlobalStyles;
