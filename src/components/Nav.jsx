@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/images/logo.svg";
 import rolling from "../assets/images/rolling.svg";
@@ -38,19 +39,23 @@ const StyledButton = styled.button`
   padding: 8px 16px;
   font-size: 16px;
   background: none;
+  text-decoration: none;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 export function Nav() {
   return (
     <StyledNav>
       <StyledGnb>
-        <a>
+        <StyledLink to="/">
           <img src={logo} alt="rolling logo" />
           <StyledLogo src={rolling} alt="rolling logo" />
-        </a>
-        <a>
+        </StyledLink>
+        <StyledLink to="/post">
           <StyledButton>롤링 페이퍼 만들기</StyledButton>
-        </a>
+        </StyledLink>
       </StyledGnb>
     </StyledNav>
   );

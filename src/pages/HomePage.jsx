@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import mainImg1 from "../assets/images/mainImg1.png";
 import mainImg2 from "../assets/images/mainImg2.png";
@@ -78,6 +79,7 @@ const StyleButton = styled.button`
   color: #fff;
   font-size: 18px;
   text-align: center;
+  cursor: pointer;
 `;
 
 export function HomePage() {
@@ -108,7 +110,9 @@ export function HomePage() {
         </StyledSection>
       </StyledArticle>
       <StylepButtonDiv>
-        <StyleButton>구경해보기</StyleButton>
+        <Link to="/list">
+          <StyleButton>구경해보기</StyleButton>
+        </Link>
       </StylepButtonDiv>
     </>
   );
