@@ -1,7 +1,6 @@
+import styled from "styled-components";
 import logo from "../assets/images/logo.svg";
-import styled, { css } from "styled-components";
-
-const fontUrl = "../assets/fonts/Poppins-SemiBold.ttf";
+import rolling from "../assets/images/rolling.svg";
 
 const StyledNav = styled.nav`
   display: flex;
@@ -23,20 +22,8 @@ const StyledGnb = styled.div`
   }
 `;
 
-const StyledLogo = styled.a`
-  ${({ fontUrl }) =>
-    fontUrl &&
-    css`
-      @font-face {
-        font-family: "Poppins";
-        src: url(${fontUrl});
-      }›
-    `}
-  font-weight: 700;
-  font-size: 20px;
-  color: #4a494f;
-  line-height: 30px;
-  height: 30px;
+const StyledLogo = styled.img`
+  margin-left: 8px;
 `;
 
 const StyledButton = styled.button`
@@ -57,10 +44,10 @@ export function Nav() {
   return (
     <StyledNav>
       <StyledGnb>
-        <StyledLogo fontUrl={fontUrl}>
-          <img src={logo} alt="rolling" />
-          <span>Rolling</span>
-        </StyledLogo>
+        <a>
+          <img src={logo} alt="rolling logo" />
+          <StyledLogo src={rolling} alt="rolling logo" />
+        </a>
         <a>
           <StyledButton>롤링 페이퍼 만들기</StyledButton>
         </a>
