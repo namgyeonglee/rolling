@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { bold24, regular16 } from "../../styles/FontStyle";
+import { Bold24, Regular16 } from "../../styles/FontStyle";
+import { DISPLAY_SIZE } from "../../styles/SizeSet";
+import { WrittenByIcons } from "./WrittenByIcons";
 
 const getColor = (backgroundColor) => {
   switch (backgroundColor) {
@@ -75,6 +77,36 @@ const CardWrapper = styled.a`
             background-repeat: no-repeat;
           }
         `}
+
+  @media (min-width: ${DISPLAY_SIZE.MIN_MOBILE}px) and (max-width: ${DISPLAY_SIZE.MAX_MOBILE}px) {
+    width: 20.8rem;
+    height: 23.2rem;
+    padding: 3rem 2.2rem 2rem 2.4rem;
+    background-color: ${({ $backgroundColor }) => getColor($backgroundColor)};
+    ${({ $backgroundImage, $backgroundColor }) =>
+      $backgroundImage
+        ? css`
+            background-image: linear-gradient(
+                rgba(0, 0, 0, 0.3),
+                rgba(0, 0, 0, 0.3)
+              ),
+              url(${$backgroundImage});
+            background-size: cover;
+            background-repeat: no-repeat;
+          `
+        : css`
+            &::before {
+              content: "";
+              position: absolute;
+              width: 10.74rem;
+              height: 14.2rem;
+              top: 11.8rem;
+              left: 10.06rem;
+              background-image: url(${getPatternImage($backgroundColor)});
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+          `}
   }
 `;
 
@@ -93,7 +125,7 @@ const RecipientInfo = styled.div`
 const RecipientText = styled.span`
   color: ${({ $backgroundImage }) =>
     RecipientTextColor({ backgroundImage: $backgroundImage })};
-  ${bold24}
+  ${Bold24}
 `;
 
 const FlexCenter = css`
@@ -114,7 +146,7 @@ const WrittenBy = styled.div`
 const WriterText = styled.span`
   color: ${({ $backgroundImage }) =>
     WriterTextColor({ backgroundImage: $backgroundImage })};
-  ${regular16}
+  ${Regular16}
 `;
 
 const WriterNumText = styled.span`
@@ -146,7 +178,7 @@ const EmojiCount = styled.div`
   border-radius: 3.2rem;
   background: rgba(0, 0, 0, 0.54);
   color: var(--white);
-  ${regular16}
+  ${Regular16}
 `;
 
 const Emoji = styled.span`
@@ -155,7 +187,7 @@ const Emoji = styled.span`
   font-size: 1.6rem;
 `;
 
-function RecipientCard({ recipient }) {
+export function RecipientCard({ recipient }) {
   const backgroundColor = recipient.backgroundColor || "beige";
   const backgroundImage = recipient.backgroundImageURL;
   const navigate = useNavigate();
@@ -201,5 +233,3 @@ function RecipientCard({ recipient }) {
     </CardWrapper>
   );
 }
-
-export default RecipientCard;

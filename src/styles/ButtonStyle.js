@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bold18, regular16 } from "./FontStyle";
+import { Bold18, Regular16 } from "./FontStyle";
 
 export const ButtonCommon = styled.button`
   display: flex;
@@ -31,13 +31,13 @@ export const Primary56 = styled(PrimaryBtn)`
   padding: 1.4rem 2.4rem;
   border-radius: 1.2rem;
 
-  ${bold18}
+  ${Bold18}
 `;
 
 export const Primary40 = styled(PrimaryBtn)`
   padding: 0.7rem 1.6rem;
   border-radius: 0.6rem;
-  ${regular16}
+  ${Regular16}
 `;
 
 export const Secondary = styled(ButtonCommon)`
@@ -60,7 +60,7 @@ export const Outlined36 = styled(ButtonCommon)`
   background: var(--${({ disabled }) => (disabled ? "gray300" : "white")});
   color: var(--${({ disabled }) => (disabled ? "white" : "gray900")});
   border: 1px solid var(--gray300);
-  ${regular16}
+  ${Regular16}
 
   &:hover:enabled {
     background: var(--gray100);
@@ -81,7 +81,7 @@ export const Outlined40 = styled(ButtonCommon)`
   background: var(--${({ disabled }) => (disabled ? "gray300" : "white")});
   color: var(--${({ disabled }) => (disabled ? "white" : "gray900")});
   border: 1px solid var(--gray300);
-  ${regular16}
+  ${Regular16}
 
   &:hover:enabled {
     background: var(--gray100);
