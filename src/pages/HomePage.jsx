@@ -69,7 +69,7 @@ export function HomePage() {
             <StyleTitle>
               누구나 손쉽게,온라인 롤링 페이퍼를 만들 수 있어요
             </StyleTitle>
-            <p>로그인 없이 자유롭게 만들어요</p>
+            <StyleDesc>로그인 없이 자유롭게 만들어요</StyleDesc>
           </StyledText>
           <StyleImage>
             <img src={mainImg1} />
@@ -79,7 +79,7 @@ export function HomePage() {
           <StyledText>
             <StylePoint>Point. 02</StylePoint>
             <StyleTitle>서로에게 이모지로 감정을 표현해보세요</StyleTitle>
-            <p>롤링 페이퍼에 이모지를 추가할 수 있어요.</p>
+            <StyleDesc>롤링 페이퍼에 이모지를 추가할 수 있어요.</StyleDesc>
           </StyledText>
           <StyleImage>
             <img src={mainImg2} />
