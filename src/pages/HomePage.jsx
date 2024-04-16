@@ -21,13 +21,16 @@ const StyledSection = styled.section`
     flex-direction: row-reverse;
   }
 `;
+
 const StyledText = styled.div`
   flex: 1;
   margin: 0px 60px;
 `;
+
 const StyleImage = styled.div`
   flex-shrink: 0;
 `;
+
 const StylePoint = styled.p`
   border-radius: 50px;
   background-color: #9935ff;
@@ -59,6 +62,24 @@ const StyleDesc = styled.p`
   line-height: 28px;
 `;
 
+const StylepButtonDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 150px;
+`;
+
+const StyleButton = styled.button`
+  background-color: #9935ff;
+  width: 280px;
+  height: 56px;
+  border-radius: 12px;
+  padding: 14px 24px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+`;
+
 export function HomePage() {
   return (
     <>
@@ -86,6 +107,9 @@ export function HomePage() {
           </StyleImage>
         </StyledSection>
       </StyledArticle>
+      <StylepButtonDiv>
+        <StyleButton>구경해보기</StyleButton>
+      </StylepButtonDiv>
     </>
   );
 }
