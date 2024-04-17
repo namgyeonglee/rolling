@@ -16,12 +16,16 @@ const modules = {
   },
 };
 
+function stripHTMLTags(str) {
+  return str.replace(/<[^>]+>/g, "");
+}
+
 const formats = ["header", "bold", "underline", "list", "bullet", "indent"];
 
 export function TextEditor({ value, onChange, setIsEmpty }) {
   const onEdit = (e) => {
     onChange(e);
-    if (e.replace("<p><br></p>", "").length === 0) {
+    if (stripHTMLTags(e) === '') {
       setIsEmpty(true);
     } else {
       setIsEmpty(false);
