@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { API_INFO, putParams } from "../api/api"; // API_INFO 및 putParams 가져오기
-import { MovePageButton } from "../components/button/MovePageButton";
-import { ListContent } from "../components/list/ListContent";
 import { useFetch } from "../hooks/useFetch"; // useFetch 훅 가져오기
 import { ListGlobalStyles } from "../styles/ListGlobalStyle";
+import { ListContent } from "./ListPage/ListContent";
+import { MovePageButton } from "./ListPage/MovePageButton";
 
 const ButtonContainer = styled.div`
   display: flex;
