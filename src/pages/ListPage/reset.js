@@ -77,13 +77,4 @@ export const reset = css`
   .nanum-myeongjo {
     font-family: "Nanum Myeongjo", serif !important;
   }
-
-  html {
-    font-size: 62.5%;
-  }
-
-  body {
-    font-size: 62.5%;
-    font-family: "Pretendard";
-  }
 `;
