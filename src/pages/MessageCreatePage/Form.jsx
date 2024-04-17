@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { API_INFO, putParams } from "../../api/api";
 import { useApi, useFetch } from "../../hooks/useFetch";
-import { Bold18, Bold24, Regular16 } from "../../styles/FontStyle";
+import { Bold18, Bold24, Regular12, Regular16 } from "../../styles/FontStyle";
 import { TextEditor } from "./TextEditor";
 
 const StyledForm = styled.form`
@@ -47,6 +47,12 @@ const Input = styled.input`
   &::placeholder {
     color: var(--gray500);
   }
+`;
+
+const ErrorMessage = styled.p`
+  ${Regular12};
+  color: var(--error);
+  margin-top: -8px;
 `;
 
 const Select = styled.select`
@@ -134,6 +140,7 @@ export function Form() {
   const defaultImg = data?.imageUrls[0];
 
   const [values, setValues] = useState(INITIAL_VALUES);
+  const [error, setError] = useState(false);
   const [content, setContent] = useState("");
   const [isEmpty, setIsEmpty] = useState(true);
 
@@ -152,6 +159,15 @@ export function Form() {
   function handleInputChange(e) {
     const { name, value } = e.target;
     handleChange(name, value);
+  }
+  
+  function handleErrorMessage(e) {
+    const { value } = e.target;
+    if (!value) {
+      setError(true);
+    } else {
+      setError(false);
+    }
   }
 
   function handleProfileImg(e) {
@@ -199,11 +215,14 @@ export function Form() {
       <FormContent>
         <Label htmlFor="sender">From.</Label>
         <Input
+          style={{ border: error && "1px solid var(--error)" }}
           name="sender"
           placeholder="이름을 입력해 주세요."
           value={values.sender}
           onChange={handleInputChange}
+          onBlur={handleErrorMessage}
         />
+        <ErrorMessage>{error ? "값을 입력해 주세요." : ""}</ErrorMessage>
       </FormContent>
 
       <FormContent>
@@ -218,9 +237,9 @@ export function Form() {
         >
           {values.img && <ProfileImg src={values.img} alt="이미지 미리보기" />}
 
-          {(values.img !== "") && (values.img !== defaultImg) && 
+          {values.img !== "" && values.img !== defaultImg && (
             <ResetButton onClick={handleClearClick}>X</ResetButton>
-          }
+          )}
 
           <div
             style={{
