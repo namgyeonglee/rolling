@@ -35,6 +35,12 @@ const Title = styled.h2`
   display: flex;
   margin-bottom: 1.6rem;
   ${Bold24}
+
+  @media (min-width: ${DISPLAY_SIZE.MIN_MOBILE}px) and (max-width: ${DISPLAY_SIZE.MIN_MOBILE}px) {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 3rem;
+  }
 `;
 
 export function ListContent({ title, recipients }) {

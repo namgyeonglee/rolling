@@ -23,13 +23,13 @@ const getColor = (backgroundColor) => {
 const getPatternImage = (backgroundColor) => {
   switch (backgroundColor) {
     case "purple":
-      return "/img/pattern_purple.svg";
+      return "/src/assets/pattern_purple.svg";
     case "beige":
-      return "/img/pattern_orange.svg";
+      return "/src/assets/pattern_orange.svg";
     case "blue":
-      return "/img/pattern_blue.svg";
+      return "/src/assets/pattern_blue.svg";
     case "green":
-      return "/img/pattern_green.svg";
+      return "/src/assets/pattern_green.svg";
     default:
       return "";
   }

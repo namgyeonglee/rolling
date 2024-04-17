@@ -4,6 +4,7 @@ import { API_INFO, putParams } from "../api/api"; // API_INFO 및 putParams 가�
 import { MovePageButton } from "../components/button/MovePageButton";
 import { ListContent } from "../components/list/ListContent";
 import { useFetch } from "../hooks/useFetch"; // useFetch 훅 가져오기
+import { ListGlobalStyles } from "../styles/ListGlobalStyle";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -86,6 +87,7 @@ export function ListPage() {
 
   return (
     <>
+      <ListGlobalStyles />
       {error && <p>Error: {error.message}</p>}{" "}
       {/* 에러가 있을 때 에러 메시지 표시 */}
       <ListContent title="인기 롤링 페이퍼 🔥" recipients={popularRecipients} />
