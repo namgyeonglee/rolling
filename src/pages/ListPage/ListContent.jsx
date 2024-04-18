@@ -8,7 +8,7 @@ const Section = styled.section`
   width: 100%;
   max-width: 118rem;
   margin: 0 auto;
-  margin-top: 5rem;
+  padding-top: 5rem;
 
   @media (min-width: ${DISPLAY_SIZE.MIN_TABLET}px) and (max-width: ${DISPLAY_SIZE.MAX_TABLET}px) {
     max-width: calc(100% - 48px);
