@@ -3,5 +3,5 @@ export function PostCreatePage() {
     <>
       <div>{`Hi I'm PostCreatePage`}</div>
     </>
-  )
+  );
 }
