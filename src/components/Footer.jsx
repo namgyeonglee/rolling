@@ -3,5 +3,5 @@ export function Footer() {
     <>
       <div>{`Hi I'm Footer`}</div>
     </>
-  )
+  );
 }
