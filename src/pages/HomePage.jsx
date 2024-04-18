@@ -14,25 +14,54 @@ const StyledArticle = styled.article`
 const StyledSection = styled.section`
   display: flex;
   align-items: center;
-  width: 1200px;
+  max-width: 1200px;
   height: 324px;
   background-color: #f6f8ff;
   border-radius: 16px;
   &:nth-child(2) {
     flex-direction: row-reverse;
   }
+  @media screen and (max-width: 1248px) {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: normal;
+    padding: 46px 0;
+    height: auto;
+    &:nth-child(2) {
+      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    width: auto;
+    margin: 0 24px;
+    height: auto;
+    padding: 20px;
+  }
 `;
 
 const StyledText = styled.div`
   flex: 1;
   margin: 0px 60px;
+  @media screen and (max-width: 1248px) {
+    flex: none;
+    padding-bottom: 36px;
+  }
 `;
 
-const StyleImage = styled.div`
+const StyledImage = styled.img`
   flex-shrink: 0;
+
+  @media screen and (max-width: 1248px) {
+    text-align: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
-const StylePoint = styled.p`
+const StyledPoint = styled.p`
   border-radius: 50px;
   background-color: #9935ff;
   padding: 12px 0px;
@@ -46,16 +75,19 @@ const StylePoint = styled.p`
   margin-bottom: 16px;
 `;
 
-const StyleTitle = styled.h2`
+const StyledTitle = styled.h2`
   max-width: 268px;
   font-size: 24px;
   font-weight: 700;
   color: #181818;
   line-height: 36px;
   margin-bottom: 8px;
+  @media screen and (max-width: 1248px) {
+    max-width: 100%;
+  }
 `;
 
-const StyleDesc = styled.p`
+const StyledDesc = styled.p`
   color: #555555;
   font-weight: 400;
   font-size: 18px;
@@ -63,13 +95,17 @@ const StyleDesc = styled.p`
   line-height: 28px;
 `;
 
-const StylepButtonDiv = styled.div`
+const StyledLink = styled(Link)`
   display: flex;
   justify-content: center;
   padding-bottom: 150px;
+  text-decoration: none;
+  @media screen and (max-width: 1248px) {
+    width: 100%;
+  }
 `;
 
-const StyleButton = styled.button`
+const StyledButton = styled.button`
   background-color: #9935ff;
   width: 280px;
   height: 56px;
@@ -80,6 +116,9 @@ const StyleButton = styled.button`
   font-size: 18px;
   text-align: center;
   cursor: pointer;
+  @media screen and (max-width: 1248px) {
+    width: 90%;
+  }
 `;
 
 export function HomePage() {
@@ -88,32 +127,26 @@ export function HomePage() {
       <StyledArticle>
         <StyledSection>
           <StyledText>
-            <StylePoint>Point. 01</StylePoint>
-            <StyleTitle>
+            <StyledPoint>Point. 01</StyledPoint>
+            <StyledTitle>
               누구나 손쉽게,온라인 롤링 페이퍼를 만들 수 있어요
-            </StyleTitle>
-            <StyleDesc>로그인 없이 자유롭게 만들어요</StyleDesc>
+            </StyledTitle>
+            <StyledDesc>로그인 없이 자유롭게 만들어요</StyledDesc>
           </StyledText>
-          <StyleImage>
-            <img src={mainImg1} />
-          </StyleImage>
+          <StyledImage src={mainImg1} />
         </StyledSection>
         <StyledSection>
           <StyledText>
-            <StylePoint>Point. 02</StylePoint>
-            <StyleTitle>서로에게 이모지로 감정을 표현해보세요</StyleTitle>
-            <StyleDesc>롤링 페이퍼에 이모지를 추가할 수 있어요.</StyleDesc>
+            <StyledPoint>Point. 02</StyledPoint>
+            <StyledTitle>서로에게 이모지로 감정을 표현해보세요</StyledTitle>
+            <StyledDesc>롤링 페이퍼에 이모지를 추가할 수 있어요.</StyledDesc>
           </StyledText>
-          <StyleImage>
-            <img src={mainImg2} />
-          </StyleImage>
+          <StyledImage src={mainImg2} />
         </StyledSection>
       </StyledArticle>
-      <StylepButtonDiv>
-        <Link to="/list">
-          <StyleButton>구경해보기</StyleButton>
-        </Link>
-      </StylepButtonDiv>
+      <StyledLink to="/list">
+        <StyledButton>구경해보기</StyledButton>
+      </StyledLink>
     </>
   );
 }
