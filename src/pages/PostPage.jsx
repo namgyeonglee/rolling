@@ -3,5 +3,5 @@ export function PostPage() {
     <>
       <div>{`Hi I'm PostPage`}</div>
     </>
-  )
+  );
 }

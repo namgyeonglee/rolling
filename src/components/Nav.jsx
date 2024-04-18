@@ -3,5 +3,5 @@ export function Nav() {
     <>
       <div>{`Hi I'm Nav`}</div>
     </>
-  )
+  );
 }
