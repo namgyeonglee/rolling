@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { App } from "./components/App";
 import { HomePage } from "./pages/HomePage";
-import { ListPage } from "./pages/ListPage";
+import { ListPage } from "./pages/ListPage/ListPage";
 import { MessageCreatePage } from "./pages/MessageCreatePage/MessageCreatePage";
 import PostCreatePage from "./pages/PostCreatePage/PostCreatePage";
-import { PostPage } from "./pages/PostPage";
+import { PostPage } from "./pages/PostPage/PostPage";
 
 export function Main() {
   return (
