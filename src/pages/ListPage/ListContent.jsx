@@ -20,6 +20,17 @@ const Section = styled.section`
   }
   @media (min-width: ${DISPLAY_SIZE.MIN_MOBILE}px) and (max-width: ${DISPLAY_SIZE.MAX_MOBILE}px) {
     max-width: calc(100% - 20px);
+    margin-left: 24px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @media (max-width: 359px) {
+    max-width: calc(100% - 10px);
+    margin-left: 24px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
