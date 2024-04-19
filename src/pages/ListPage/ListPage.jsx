@@ -65,7 +65,7 @@ export function ListPage() {
         top: Math.random() * window.innerHeight,
       }));
       setRandomPositions(newPositions);
-    }, 3000); // 1초마다 위치 변경
+    }, 3000); // 3초마다 위치 변경
 
     return () => clearInterval(interval);
   }, []);
