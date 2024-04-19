@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export const useFetch = ({ url, errorCallback }) => {
   const [data, setData] = useState(null);
@@ -10,7 +10,7 @@ export const useFetch = ({ url, errorCallback }) => {
       setLoading(true);
 
       try {
-        const response = await fetch(url, { method: 'GET' });
+        const response = await fetch(url, { method: "GET" });
         const result = await response.json();
 
         setData(result);
@@ -44,8 +44,8 @@ export const useApi = () => {
 
     headers = headers
       ? headers
-      : typeof body === 'object'
-        ? { 'Content-Type': 'application/json' }
+      : typeof body === "object"
+        ? { "Content-Type": "application/json" }
         : {};
 
     const option = {
@@ -59,7 +59,7 @@ export const useApi = () => {
 
     try {
       response = await fetch(url, option);
-      if (method !== 'DELETE') {
+      if (method !== "DELETE") {
         const result = await response.json();
 
         setData(result);

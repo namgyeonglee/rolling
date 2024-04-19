@@ -3,7 +3,7 @@ import { App } from "./components/App";
 import { HomePage } from "./pages/HomePage";
 import { ListPage } from "./pages/ListPage";
 import { MessageCreatePage } from "./pages/MessageCreatePage/MessageCreatePage";
-import { PostCreatePage } from "./pages/PostCreatePage";
+import PostCreatePage from "./pages/PostCreatePage/PostCreatePage";
 import { PostPage } from "./pages/PostPage";
 
 export function Main() {
