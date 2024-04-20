@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { styled } from 'styled-components';
-import { API_INFO, putParams } from '../../api/api';
-import { useApi, useFetch } from './../../hooks/useFetch';
-import { Card } from './Card';
-import { NewCard } from './NewCard';
-
-const { baseUrl, endPoints } = API_INFO;
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { styled } from "styled-components";
+import { API_INFO, putParams } from "../../api/api";
+import { useApi, useFetch } from "./../../hooks/useFetch";
+import { Card } from "./Card";
+import { NewCard } from "./NewCard";
 
 const GridDiv = styled.div`
   display: grid;
@@ -16,12 +14,12 @@ const GridDiv = styled.div`
   max-width: 1200px;
   padding: 110px 0px 0px;
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1248px) {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 28px 24px;
   }
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 1247px) {
     grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
@@ -37,13 +35,16 @@ const EmptyDiv = styled.div`
   padding-top: 245px;
 `;
 
+const { baseUrl, endPoints } = API_INFO;
+
 export function Cards({ postId, editable }) {
   const [cardData, setCardData] = useState([]);
   const [getUrl, setGetUrl] = useState(
     baseUrl +
       putParams(endPoints.getRecipientsMessages.url, postId) +
-      '?limit=8',
+      "?limit=8",
   );
+
   const [sendRequest, data, loading, error] = useApi();
 
   const { ref, inView } = useInView({ threshold: 0.9 });
@@ -65,14 +66,14 @@ export function Cards({ postId, editable }) {
 
   useEffect(() => {
     if (inView && !getLoading && getError === null && getData.next) {
-      setGetUrl(getData.next);
+      setGetUrl(getData.next.replace("?limit=8", "?limit=6"));
     }
   }, [inView]);
 
   return (
     <div>
       <GridDiv>
-        <NewCard />
+        {!editable && <NewCard linkUrl={`/post/${postId}/message`} />}
         {cardData.map((item) => (
           <Card
             key={item.id}

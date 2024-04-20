@@ -1,13 +1,16 @@
 import EmojiPicker from "emoji-picker-react";
 import { useEffect, useRef, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import styled from "styled-components";
-import { API_INFO, putParams } from "../api/api";
-import addIcon from "../assets/images/addIcon.svg";
-import downArrow from "../assets/images/downArrow.svg";
-import emogiIcon from "../assets/images/emogiIcon.svg";
-import shareIcon from "../assets/images/shareIcon.svg";
-import { useApi, useFetch } from "../hooks/useFetch";
+import { API_INFO, KakaoShare, putParams } from "../../api/api";
+import addIcon from "../../assets/images/addIcon.svg";
+import downArrow from "../../assets/images/downArrow.svg";
+import emogiIcon from "../../assets/images/emogiIcon.svg";
+import shareIcon from "../../assets/images/shareIcon.svg";
+import { useApi, useFetch } from "../../hooks/useFetch";
+import { useScript } from "../../hooks/useScript";
 import { EmojiModal } from "./EmojiModal";
+import { Profiles } from "./Profiles";
 import { ShareModal } from "./ShareModal";
 
 const StyledNav = styled.nav`
@@ -15,8 +18,7 @@ const StyledNav = styled.nav`
   justify-content: center;
   top: 0;
   width: 100%;
-  border-bottom: 1px solid #EDEDED;
-  }
+  border-bottom: 1px solid #ededed;
 `;
 
 const StyledGnb = styled.div`
@@ -24,7 +26,7 @@ const StyledGnb = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  max-width: 1207px;
+  max-width: 1200px;
   height: 62px;
   @media screen and (max-width: 1248px) {
     padding: 0 24px;
@@ -39,6 +41,7 @@ const StyledGnb = styled.div`
 const StyledDiv = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 
   @media screen and (max-width: 767px) {
     padding: 8px 0;
@@ -119,11 +122,17 @@ const AbsoluteLeftDiv = styled.div`
 
   @media screen and (max-width: 767px) {
     left: -100px;
+    &::before {
+      display: none;
+    }
   }
 `;
 
 const RelativeDiv = styled.div`
   position: relative;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const EmojiGroup = styled.div`
@@ -181,15 +190,70 @@ const ShareIconImg = styled.img`
   }
 `;
 
+const ProfileContainer = styled.div`
+  width: 80px;
+`;
+
 const { baseUrl, endPoints } = API_INFO;
 
-export function PostNav({ name, postId }) {
+function shareMessage() {
+  // 피드 공유
+  /*
+  Kakao?.Share?.sendDefault({
+    objectType: "feed",
+    content: {
+      title: "딸기 치즈 케익",
+      description: "#케익 #딸기 #삼평동 #카페 #분위기 #소개팅",
+      imageUrl:
+        "http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png",
+      link: {
+        mobileWebUrl: "https://developers.kakao.com",
+        webUrl: "https://developers.kakao.com",
+      },
+    },
+    social: {
+      likeCount: 286,
+      commentCount: 45,
+      sharedCount: 845,
+    },
+    buttons: [
+      {
+        title: "웹으로 보기",
+        link: {
+          mobileWebUrl: "https://developers.kakao.com",
+          webUrl: "https://developers.kakao.com",
+        },
+      },
+      {
+        title: "앱으로 보기",
+        link: {
+          mobileWebUrl: "https://developers.kakao.com",
+          webUrl: "https://developers.kakao.com",
+        },
+      },
+    ],
+  });
+  */
+
+  // 텍스트만 공유
+  Kakao.Share.sendDefault({
+    objectType: "text",
+    text: "기본 템플릿으로 제공되는 텍스트 템플릿은 텍스트를 최대 200자까지 표시할 수 있습니다. 텍스트 템플릿은 텍스트 영역과 하나의 기본 버튼을 가집니다. 임의의 버튼을 설정할 수도 있습니다. 여러 장의 이미지, 프로필 정보 등 보다 확장된 형태의 카카오톡 공유는 다른 템플릿을 이용해 보낼 수 있습니다.",
+    link: {
+      mobileWebUrl: "https://developers.kakao.com",
+      webUrl: "https://developers.kakao.com",
+    },
+  });
+}
+
+export function PostNav({ postData, postId }) {
   const [openSelector, setOpenSelector] = useState(false);
   const [openEmogiModal, setOpenEmogiModal] = useState(false);
   const [openShareModal, setOpenShareModal] = useState(false);
   const EmojiRef = useRef();
   const EmogimodalRef = useRef();
   const ShareRef = useRef();
+  const [scriptLoading, scriptError] = useScript(KakaoShare.src);
 
   const {
     data: getData,
@@ -215,6 +279,7 @@ export function PostNav({ name, postId }) {
         emoji: e.emoji,
         type: "increase",
       },
+      callback: () => {},
     });
   };
   const handleDownArrowClcik = () => {
@@ -244,13 +309,28 @@ export function PostNav({ name, postId }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (!scriptLoading && scriptError === null) {
+      if (Kakao?.isInitialized()) return;
+      Kakao?.init(KakaoShare.javaScriptKey);
+    }
+  }, [scriptLoading]);
+
   return (
     <StyledNav>
       <StyledGnb>
-        <StyledName>To. {name} </StyledName>
+        <StyledName>To. {postData?.name} </StyledName>
         <StyledDiv>
           <StyledNumber>
-            <StyledBold>23</StyledBold>명이 작성했어요!
+            <ProfileContainer>
+              {postData?.messageCount > 0 && (
+                <Profiles
+                  items={postData?.recentMessages}
+                  length={postData?.messageCount}
+                />
+              )}
+            </ProfileContainer>
+            <StyledBold>{postData?.messageCount}</StyledBold>명이 작성했어요!
           </StyledNumber>
           <EmojiGroup>
             {!getLoading &&
@@ -286,14 +366,20 @@ export function PostNav({ name, postId }) {
               {openSelector && <EmojiPicker onEmojiClick={handleEmojiClick} />}
             </AbsoluteRightDiv>
           </StyledButton>
-          <StyledButton>
-            <ShareIconImg src={shareIcon} onClick={handleShareClcik} />
+          <StyledButton onClick={handleShareClcik}>
+            <ShareIconImg src={shareIcon} />
             <AbsoluteLeftDiv ref={ShareRef}>
-              {openShareModal && <ShareModal></ShareModal>}
+              {openShareModal && (
+                <ShareModal
+                  shareKakao={shareMessage}
+                  toast={toast}
+                ></ShareModal>
+              )}
             </AbsoluteLeftDiv>
           </StyledButton>
         </StyledDiv>
       </StyledGnb>
+      <Toaster position="bottom-center" reverseOrder={false} />
     </StyledNav>
   );
 }

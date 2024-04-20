@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
-import { styled } from 'styled-components';
-import { getFormatDate } from './../../utils/date';
-import { HeaderDiv, ProfileImg, RelationDiv, StyledSpan } from './Card';
+import { useEffect, useRef } from "react";
+import JsxParser from "react-jsx-parser";
+import { styled } from "styled-components";
+import { getFormatDate } from "./../../utils/date";
+import { HeaderDiv, ProfileImg, RelationDiv, StyledSpan } from "./Card";
 
 const ModalBack = styled.div`
   position: fixed;
@@ -10,6 +11,7 @@ const ModalBack = styled.div`
   bottom: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.8);
+  z-index: 998;
 `;
 
 const ModalDiv = styled.div`
@@ -53,6 +55,7 @@ const ContentDiv = styled.div`
   margin-top: 20px;
   height: 48%;
   color: var(--gray600);
+  font-family: ${(props) => props.$font};
   font-size: 18px;
   line-height: 30px;
   overflow-y: scroll;
@@ -113,12 +116,12 @@ export function CardModal({
         setModalOpen(false);
       }
     };
-    document.addEventListener('mousedown', handler);
+    document.addEventListener("mousedown", handler);
 
     return () => {
-      document.removeEventListener('mousedown', handler);
+      document.removeEventListener("mousedown", handler);
     };
-  });
+  }, []);
 
   return (
     <ModalBack>
@@ -127,16 +130,18 @@ export function CardModal({
           <ProfileImg src={profileImageURL} />
           <HeaderDiv>
             <div>
-              <StyledSpan $size={'20px'}>From. </StyledSpan>
-              <StyledSpan $weigth={'bold'} $size={'20px'}>
+              <StyledSpan $size={"20px"}>From. </StyledSpan>
+              <StyledSpan $weigth={"bold"} $size={"20px"}>
                 {sender}
               </StyledSpan>
             </div>
             <RelationDiv $relation={relationship}>{relationship}</RelationDiv>
           </HeaderDiv>
-          <DateDiv>{getFormatDate(new Date(createdAt), '.')}</DateDiv>
+          <DateDiv>{getFormatDate(new Date(createdAt), ".")}</DateDiv>
         </HeadGridDiv>
-        <ContentDiv>{content}</ContentDiv>
+        <ContentDiv $font={font}>
+          <JsxParser jsx={content} />
+        </ContentDiv>
         <ModalBottom>
           <CloseButton onClick={closeModal}>확인</CloseButton>
         </ModalBottom>

@@ -1,38 +1,39 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { API_INFO, putParams } from '../../api/api';
-import deleteButton from '../../assets/deleteButton.png';
-import { getFormatDate } from '../../utils/date';
-import { CardModal } from './CardModal';
+import { useState } from "react";
+import JsxParser from "react-jsx-parser";
+import styled from "styled-components";
+import { API_INFO, putParams } from "../../api/api";
+import deleteButton from "../../assets/deleteButton.png";
+import { getFormatDate } from "../../utils/date";
+import { CardModal } from "./CardModal";
 
 const { baseUrl, endPoints } = API_INFO;
 
 const RELATIONSHIP = {
   가족: {
-    back: '--green100',
-    color: '--green500',
+    back: "--green100",
+    color: "--green500",
   },
   동료: {
-    back: '--purple100',
-    color: '--purple600',
+    back: "--purple100",
+    color: "--purple600",
   },
   친구: {
-    back: '--blue100',
-    color: '--blue500',
+    back: "--blue100",
+    color: "--blue500",
   },
   지인: {
-    back: '--orange100',
-    color: '--orange500',
+    back: "--orange100",
+    color: "--orange500",
   },
 };
 
 export const CardDiv = styled.div`
-  @media screen and (min-width: 1024px) {
-    max-width: 384px;
+  @media screen and (min-width: 1248px) {
+    width: 384px;
     height: 280px;
   }
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 1247px) {
     width: 352px;
     height: 284px;
   }
@@ -45,9 +46,6 @@ export const CardDiv = styled.div`
   padding: 28px 24px;
   box-sizing: border-box;
   background-color: white;
-  font-family: ${(props) => props.$font};
-
-  ${({ fontUrl }) => fontUrl && css``}
 `;
 
 const HeadGridDiv = styled.div`
@@ -81,7 +79,9 @@ const DeleteButton = styled.button`
 const ContentDiv = styled.div`
   margin-top: 20px;
   color: var(--gray600);
+  font-family: ${(props) => props.$font};
   word-break: break-all;
+
   @media screen and (min-width: 768px) {
     font-size: 18px;
     line-height: 28px;
@@ -156,13 +156,13 @@ export function Card({
 
   return (
     <>
-      <CardDiv $font={font} onClick={showModal}>
+      <CardDiv onClick={showModal}>
         <HeadGridDiv>
           <ProfileImg src={profileImageURL} />
           <HeaderDiv>
             <div>
-              <StyledSpan $size={'20px'}>From. </StyledSpan>
-              <StyledSpan $weigth={'bold'} $size={'20px'}>
+              <StyledSpan $size={"20px"}>From. </StyledSpan>
+              <StyledSpan $weigth={"bold"} $size={"20px"}>
                 {sender}
               </StyledSpan>
             </div>
@@ -178,11 +178,13 @@ export function Card({
             )}
           </div>
         </HeadGridDiv>
-        <ContentDiv>
-          <LineLimitDiv>{content}</LineLimitDiv>
+        <ContentDiv $font={font}>
+          <LineLimitDiv>
+            <JsxParser jsx={content} />
+          </LineLimitDiv>
         </ContentDiv>
-        <StyledSpan $size={'12px'} $color={'var(--gray400)'}>
-          {getFormatDate(new Date(createdAt), '.')}
+        <StyledSpan $size={"12px"} $color={"var(--gray400)"}>
+          {getFormatDate(new Date(createdAt), ".")}
         </StyledSpan>
       </CardDiv>
       {modalOpen && (
