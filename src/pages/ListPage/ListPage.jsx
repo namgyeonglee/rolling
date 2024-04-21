@@ -50,6 +50,9 @@ export function ListPage() {
   const [hasMore, setHasMore] = useState(true);
   //물방울 랜덤 생성
   const [randomPositions, setRandomPositions] = useState([]);
+  const [dataUrl, setDataUrl] = useState(
+    putParams(API_INFO.baseUrl + API_INFO.endPoints.getRecipients.url, offset),
+  );
 
   //물방울 훅
   useEffect(() => {
@@ -77,10 +80,7 @@ export function ListPage() {
 
   const { data, loading, error } = useFetch({
     // useFetch 훅 적용
-    url: putParams(
-      API_INFO.baseUrl + API_INFO.endPoints.getRecipients.url,
-      offset,
-    ),
+    url: dataUrl,
     errorCallback: handleError,
   });
   const observer = useRef();
@@ -141,11 +141,17 @@ export function ListPage() {
       <ListGlobalStyles />
       {error && <p>Error: {error.message}</p>}{" "}
       {/* 에러가 있을 때 에러 메시지 표시 */}
-      <ListContent title="인기 롤링 페이퍼 🔥" recipients={popularRecipients} />
+      <ListContent
+        title="인기 롤링 페이퍼 🔥"
+        recipients={popularRecipients}
+        setDataUrl={setDataUrl}
+        next={data?.next}
+      />
       <ListContent
         title="최근에 만든 롤링 페이퍼️️ ⭐"
         recipients={recentRecipients}
-        lastRecipientRef={lastRecipientRef}
+        setDataUrl={setDataUrl}
+        next={data?.next}
       />
       <ButtonContainer>
         <MovePageButton moveLink="/post" btnName="나도 만들어보기" />
