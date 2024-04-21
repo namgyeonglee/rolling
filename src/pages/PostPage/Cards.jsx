@@ -12,7 +12,7 @@ const GridDiv = styled.div`
   box-sizing: border-box;
   margin: auto auto;
   max-width: 1200px;
-  padding: 110px 0px 0px;
+  padding: 110px 0 0;
 
   @media screen and (min-width: 1248px) {
     grid-template-columns: 1fr 1fr 1fr;

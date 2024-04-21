@@ -9,24 +9,24 @@ const CenterFlexDiv = styled.div`
   align-items: center;
 
   @media screen and (min-width: 1248px) {
-    width: 384px;
-    height: 280px;
+    width: 38.4rem;
+    height: 28rem;
   }
 
   @media screen and (max-width: 1247px) {
-    width: 352px;
-    height: 284px;
+    width: 35.2rem;
+    height: 28.4rem;
   }
 
   @media screen and (max-width: 767px) {
-    width: 320px;
-    height: 230px;
+    width: 32rem;
+    height: 23rem;
   }
 `;
 
 const AddButton = styled.img`
-  width: 56px;
-  height: 56px;
+  width: 5.6rem;
+  height: 5.6rem;
   cursor: pointer;
 `;
 

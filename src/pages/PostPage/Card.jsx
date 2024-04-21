@@ -3,6 +3,13 @@ import JsxParser from "react-jsx-parser";
 import styled from "styled-components";
 import { API_INFO, putParams } from "../../api/api";
 import deleteButton from "../../assets/deleteButton.png";
+import {
+  Bold15,
+  Bold18,
+  Regular14,
+  Regular15,
+  Regular18,
+} from "../../styles/FontStyle";
 import { getFormatDate } from "../../utils/date";
 import { CardModal } from "./CardModal";
 
@@ -29,21 +36,21 @@ const RELATIONSHIP = {
 
 export const CardDiv = styled.div`
   @media screen and (min-width: 1248px) {
-    width: 384px;
-    height: 280px;
+    width: 38.4rem;
+    height: 28rem;
   }
 
   @media screen and (max-width: 1247px) {
-    width: 352px;
-    height: 284px;
+    width: 35.2rem;
+    height: 28.4rem;
   }
 
   @media screen and (max-width: 767px) {
-    width: 320px;
-    height: 230px;
+    width: 32rem;
+    height: 23rem;
   }
   border-radius: 16px;
-  padding: 28px 24px;
+  padding: 2.8rem 2.4rem;
   box-sizing: border-box;
   background-color: white;
 `;
@@ -51,19 +58,19 @@ export const CardDiv = styled.div`
 const HeadGridDiv = styled.div`
   display: grid;
   grid-template-columns: 3fr 9fr 2fr;
-  padding-bottom: 15px;
+  padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--gray200);
 `;
 
 export const HeaderDiv = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
 `;
 
 export const ProfileImg = styled.img`
-  width: 56px;
-  height: 56px;
+  width: 5.6rem;
+  height: 5.6rem;
   border-radius: 100px;
 `;
 
@@ -72,26 +79,47 @@ const DeleteButton = styled.button`
   background-color: white;
   border: 1px solid var(--gray300);
   border-radius: 6px;
-  width: 40px;
-  height: 40px;
+  width: 4rem;
+  height: 4rem;
 `;
 
 const ContentDiv = styled.div`
-  margin-top: 20px;
+  margin-top: 2rem;
   color: var(--gray600);
-  font-family: ${(props) => props.$font};
   word-break: break-all;
 
+  & p,
+  u,
+  h1,
+  h2,
+  strong {
+    font-family: ${(props) => props.$font};
+  }
+
   @media screen and (min-width: 768px) {
-    font-size: 18px;
-    line-height: 28px;
-    height: 120px;
+    & p,
+    u,
+    h1,
+    h2 {
+      ${Regular18}
+    }
+    & strong {
+      ${Bold18}
+    }
+    height: 12rem;
   }
 
   @media screen and (max-width: 767px) {
-    font-size: 15px;
-    line-height: 22px;
-    height: 75px;
+    & p,
+    u,
+    h1,
+    h2 {
+      ${Regular15}
+    }
+    & strong {
+      ${Bold15}
+    }
+    height: 7.5rem;
   }
 `;
 
@@ -115,12 +143,12 @@ export const StyledSpan = styled.span`
 `;
 
 export const RelationDiv = styled.div`
+  ${Regular14}
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 20px;
-  font-size: 14px;
+  width: 4rem;
+  height: 2rem;
   border-radius: 4px;
   background-color: var(${(props) => RELATIONSHIP[props.$relation].back});
   color: var(${(props) => RELATIONSHIP[props.$relation].color});
@@ -161,8 +189,8 @@ export function Card({
           <ProfileImg src={profileImageURL} />
           <HeaderDiv>
             <div>
-              <StyledSpan $size={"20px"}>From. </StyledSpan>
-              <StyledSpan $weigth={"bold"} $size={"20px"}>
+              <StyledSpan $size={"2rem"}>From. </StyledSpan>
+              <StyledSpan $weigth={"bold"} $size={"2rem"}>
                 {sender}
               </StyledSpan>
             </div>
@@ -183,7 +211,7 @@ export function Card({
             <JsxParser jsx={content} />
           </LineLimitDiv>
         </ContentDiv>
-        <StyledSpan $size={"12px"} $color={"var(--gray400)"}>
+        <StyledSpan $size={"1.2rem"} $color={"var(--gray400)"}>
           {getFormatDate(new Date(createdAt), ".")}
         </StyledSpan>
       </CardDiv>

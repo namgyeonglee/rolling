@@ -9,119 +9,75 @@ import emogiIcon from "../../assets/images/emogiIcon.svg";
 import shareIcon from "../../assets/images/shareIcon.svg";
 import { useApi, useFetch } from "../../hooks/useFetch";
 import { useScript } from "../../hooks/useScript";
+import { Bold18, Bold28, Regular16, Regular18 } from "../../styles/FontStyle";
 import { EmojiModal } from "./EmojiModal";
 import { Profiles } from "./Profiles";
 import { ShareModal } from "./ShareModal";
 
-const StyledNav = styled.nav`
+const HeaderRightDiv = styled.div`
   display: flex;
-  justify-content: center;
-  top: 0;
-  width: 100%;
-  border-bottom: 1px solid #ededed;
-`;
-
-const StyledGnb = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  height: 62px;
-  @media screen and (max-width: 1248px) {
-    padding: 0 24px;
-  }
-  @media screen and (max-width: 767px) {
-    padding: 12px 20px;
-    flex-direction: column;
-    align-items: stretch;
-    height: auto;
-  }
-`;
-const StyledDiv = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  color: var(--gray900);
 
   @media screen and (max-width: 767px) {
-    padding: 8px 0;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
-`;
-
-const StyledName = styled.h2`
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -1px;
-  color: #2b2b2b;
-`;
-
-const StyledNumber = styled.p`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 18px;
-  padding: 0 28px;
-  color: #181818;
-
-  @media screen and (max-width: 1248px) {
-    display: none;
-  }
-`;
-
-const StyledBold = styled.span`
-  font-weight: 700;
 `;
 
 const StyledButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: auto;
+  width: ${(props) => props.$width};
+  height: 3.6rem;
   cursor: pointer;
   border-radius: 6px;
   border: 1px solid #cccccc;
   color: #181818;
-  padding: 8px 16px;
   background: none;
   position: relative;
 
-  &:last-child {
-    margin-left: 26px;
+  @media screen and (max-width: 767px) {
+    width: 3.6rem;
+    height: 3.2rem;
   }
 `;
 
-const AbsoluteRightDiv = styled.div`
+const StyledDiv = styled.div`
+  width: 0;
+  height: 2.8rem;
+  border-right: 0.1rem solid var(--gray200);
+  margin: 0 1.6rem;
+
+  @media screen and (max-width: 1247px) {
+    ${(props) => {
+      if (props.$onlyPc) {
+        return "display: none;";
+      }
+    }}
+  }
+`;
+
+const EmojiPickerDiv = styled.div`
   position: absolute;
-  top: 50px;
+  top: 5rem;
   right: 0;
 
   @media screen and (max-width: 767px) {
-    top: 60px;
-    right: -70px;
+    top: 4rem;
+    right: -5rem;
   }
 `;
 
-const AbsoluteLeftDiv = styled.div`
+const ShareDiv = styled.div`
   position: absolute;
-  top: 50px;
-  left: 0;
+  top: 5rem;
+  right: 0;
   width: auto;
   height: 100%;
 
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 57px;
-    right: 15px;
-    width: 1px;
-    height: 28px;
-    background-color: #eeeeee;
-  }
-
   @media screen and (max-width: 767px) {
-    left: -100px;
+    left: -10rem;
     &::before {
       display: none;
     }
@@ -129,69 +85,115 @@ const AbsoluteLeftDiv = styled.div`
 `;
 
 const RelativeDiv = styled.div`
+  display: flex;
+  align-items: center;
   position: relative;
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
+  margin-right: 1.2rem;
 `;
 
-const EmojiGroup = styled.div`
+const EmojiContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto;
-  height: 100%;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 5px;
-    left: -15px;
-    width: 1px;
-    height: 28px;
-    background-color: #eeeeee;
-  }
   @media screen and (max-width: 1248px) {
-    &::before {
-      display: none;
-    }
+    justify-content: flex-start;
   }
 `;
 
-const EmojiEach = styled.div`
+const Emoji = styled.div`
+  ${Regular16}
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 32px;
-  width: 63px;
-  height: 36px;
+  width: 6.6rem;
+  height: 3.6rem;
   background-color: rgb(0, 0, 0, 0.54);
-  color: #fff;
-  margin-right: 8px;
+  color: white;
+  margin-right: 0.8rem;
 `;
 
 const AddIconImg = styled.img`
-  display: block;
+  margin-left: 0.4rem;
+  width: 2.8rem;
   @media screen and (max-width: 767px) {
     display: none;
   }
 `;
 
 const EmogiIconImg = styled.img`
-  @media screen and (max-width: 767px) {
-    width: 100%;
-  }
+  width: 2.4rem;
 `;
 
 const ShareIconImg = styled.img`
-  @media screen and (max-width: 767px) {
-    width: 100%;
-  }
+  width: 2.4rem;
 `;
 
 const ProfileContainer = styled.div`
+  ${Regular18}
+  display: flex;
+  align-items: center;
+
+  & strong {
+    ${Bold18}
+  }
+
+  @media screen and (max-width: 1247px) {
+    display: none;
+  }
+`;
+
+const ProfileImgContainer = styled.div`
   width: 80px;
+`;
+
+const HeaderContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledHeader = styled.header`
+  width: 100%;
+  height: 6.8rem;
+  padding: 0 2.4rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (min-width: 1248px) {
+    width: 1200px;
+    padding: 0 0;
+  }
+
+  @media screen and (max-width: 1247px) {
+  }
+
+  @media screen and (max-width: 767px) {
+    height: 10.4rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+`;
+
+const NameDiv = styled.div`
+  display: flex;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    ${Bold28}
+  }
+
+  @media screen and (max-width: 767px) {
+    ${Bold18}
+  }
+`;
+
+const FlexDIv = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const { baseUrl, endPoints } = API_INFO;
@@ -317,37 +319,37 @@ export function PostNav({ postData, postId }) {
   }, [scriptLoading]);
 
   return (
-    <StyledNav>
-      <StyledGnb>
-        <StyledName>To. {postData?.name} </StyledName>
-        <StyledDiv>
-          <StyledNumber>
-            <ProfileContainer>
+    <HeaderContainer>
+      <StyledHeader>
+        <NameDiv>To.{postData?.name}</NameDiv>
+        <HeaderRightDiv>
+          <ProfileContainer>
+            <ProfileImgContainer>
               {postData?.messageCount > 0 && (
                 <Profiles
                   items={postData?.recentMessages}
                   length={postData?.messageCount}
                 />
               )}
-            </ProfileContainer>
-            <StyledBold>{postData?.messageCount}</StyledBold>명이 작성했어요!
-          </StyledNumber>
-          <EmojiGroup>
+            </ProfileImgContainer>
+            <strong>{postData?.messageCount}</strong>명이 작성했어요!
+          </ProfileContainer>
+          <StyledDiv $onlyPc={true} />
+          <EmojiContainer>
             {!getLoading &&
               getError === null &&
               getData.results.map((item, idx) => {
                 if (idx < 3)
                   return (
-                    <EmojiEach key={item.id}>
-                      {item.emoji}
-                      {item.count}
-                    </EmojiEach>
+                    <Emoji key={item.id}>
+                      {item.emoji} {item.count}
+                    </Emoji>
                   );
                 else return;
               })}
             <RelativeDiv>
               <img src={downArrow} onClick={handleDownArrowClcik}></img>
-              <AbsoluteRightDiv ref={EmogimodalRef}>
+              <EmojiPickerDiv ref={EmogimodalRef}>
                 {openEmogiModal && (
                   <EmojiModal
                     setOpenList={setOpenEmogiModal}
@@ -356,30 +358,35 @@ export function PostNav({ postData, postId }) {
                     getError={getError}
                   ></EmojiModal>
                 )}
-              </AbsoluteRightDiv>
+              </EmojiPickerDiv>
             </RelativeDiv>
-          </EmojiGroup>
-          <StyledButton onClick={handleClick}>
-            <EmogiIconImg src={emogiIcon} />
-            <AddIconImg src={addIcon} />
-            <AbsoluteRightDiv ref={EmojiRef}>
-              {openSelector && <EmojiPicker onEmojiClick={handleEmojiClick} />}
-            </AbsoluteRightDiv>
-          </StyledButton>
-          <StyledButton onClick={handleShareClcik}>
-            <ShareIconImg src={shareIcon} />
-            <AbsoluteLeftDiv ref={ShareRef}>
-              {openShareModal && (
-                <ShareModal
-                  shareKakao={shareMessage}
-                  toast={toast}
-                ></ShareModal>
-              )}
-            </AbsoluteLeftDiv>
-          </StyledButton>
-        </StyledDiv>
-      </StyledGnb>
+          </EmojiContainer>
+          <FlexDIv>
+            <StyledButton $width="8.8rem" onClick={handleClick}>
+              <EmogiIconImg src={emogiIcon} />
+              <AddIconImg src={addIcon} />
+              <EmojiPickerDiv ref={EmojiRef}>
+                {openSelector && (
+                  <EmojiPicker onEmojiClick={handleEmojiClick} />
+                )}
+              </EmojiPickerDiv>
+            </StyledButton>
+            <StyledDiv />
+            <StyledButton $width="5.6rem" onClick={handleShareClcik}>
+              <ShareIconImg src={shareIcon} />
+              <ShareDiv ref={ShareRef}>
+                {openShareModal && (
+                  <ShareModal
+                    shareKakao={shareMessage}
+                    toast={toast}
+                  ></ShareModal>
+                )}
+              </ShareDiv>
+            </StyledButton>
+          </FlexDIv>
+        </HeaderRightDiv>
+      </StyledHeader>
       <Toaster position="bottom-center" reverseOrder={false} />
-    </StyledNav>
+    </HeaderContainer>
   );
 }

@@ -1,18 +1,19 @@
 import styled from "styled-components";
 import successIcon from "../../assets/success.png";
+import { Regular16 } from "../../styles/FontStyle";
 import { CopyToast } from "./CopyToast";
 
 const StyledModal = styled.div`
-  width: 140px;
+  width: 14rem;
   background-color: #fff;
   border-radius: 8px;
   border: 1px solid #b6b6b6;
-  padding: 10px 0;
+  padding: 1rem 0;
 `;
 const ShareItem = styled.div`
-  padding: 16px;
+  ${Regular16}
+  padding: 1.6rem;
   text-align: left;
-  font-size: 16px;
 
   &:hover {
     background-color: #f6f6f6;
@@ -26,8 +27,8 @@ export function ShareModal({ shareKakao, toast }) {
     toast(
       (t) => (
         <CopyToast
-          width="524px"
-          height="64px"
+          width="52.4rem"
+          height="6.4rem"
           backgroundColor="--black"
           color="white"
           imgSrc={successIcon}
@@ -39,9 +40,9 @@ export function ShareModal({ shareKakao, toast }) {
         duration: 5000,
         style: {
           boxSizing: "border-box",
-          width: "524px",
-          height: "64px",
-          padding: "0px 0px",
+          width: "52.4rem",
+          height: "6.4rem",
+          padding: "0 0",
           position: "relative",
         },
       },

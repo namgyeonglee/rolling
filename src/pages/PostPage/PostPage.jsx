@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import { API_INFO, putParams } from "../../api/api";
+import { Bold18 } from "../../styles/FontStyle";
 import { useApi, useFetch } from "./../../hooks/useFetch";
 import { Cards } from "./Cards";
 import { PostNav } from "./PostNav";
@@ -11,7 +12,7 @@ const Content = styled.main`
   justify-content: center;
   background-color: ${(props) => props.$backgroundColor};
   background-image: url(${(props) => props.$backgroundImageURL});
-  height: calc(100vh - 142px);
+  height: calc(100vh - 14.2rem);
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
@@ -19,13 +20,12 @@ const Content = styled.main`
 `;
 
 const DeleteButton = styled.button`
+  ${Bold18}
   position: fixed;
   left: 50%;
-  bottom: 24px;
+  bottom: 2.4px;
   transform: translateX(-50%);
   height: 56px;
-  font-size: 18px;
-  font-weight: bold;
   color: white;
   background-color: var(--purple600);
   border-radius: 12px;
@@ -33,11 +33,11 @@ const DeleteButton = styled.button`
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    width: 720px;
+    width: 72rem;
   }
 
   @media screen and (max-width: 767px) {
-    width: 320px;
+    width: 32rem;
   }
 `;
 
