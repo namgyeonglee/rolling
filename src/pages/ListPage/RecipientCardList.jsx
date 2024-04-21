@@ -57,11 +57,10 @@ const LeftButton = styled(Button)`
 const RightButton = styled(Button)`
   right: -2rem;
   z-index: 1;
-  /*우측 버튼이 마지막 순서일 때 숨김 여부를 조정하기 위해 visible 속성 추가 */
-  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
+  visibility: visible;
 `;
 
-export function RecipientCardList({ recipients }) {
+export function RecipientCardList({ recipients, setDataUrl, next, hasMore }) {
   const containerRef = useRef(null);
   const [showLeftButton, setShowLeftButton] = useState(false); // 변경: 좌측 버튼 숨김 여부 상태 추가
   const [showRightButton, setShowRightButton] = useState(true); // 변경: 우측 버튼 숨김 여부 상태 추가
@@ -81,6 +80,12 @@ export function RecipientCardList({ recipients }) {
       };
     }
   }, []);
+
+  useEffect(() => {
+    if (next && !showRightButton) {
+      setDataUrl(next);
+    }
+  }, [showRightButton]);
 
   const handleLeftButton = () => {
     if (containerRef.current) {
