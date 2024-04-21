@@ -54,14 +54,18 @@ const Title = styled.h2`
   }
 `;
 
-export function ListContent({ title, recipients }) {
+export function ListContent({ title, recipients, setDataUrl, next }) {
   return (
     <Section>
       <TitleContainer>
         <Title>{title}</Title>
       </TitleContainer>
       <RecipientCardListContainer>
-        <RecipientCardList recipients={recipients} />
+        <RecipientCardList
+          recipients={recipients}
+          setDataUrl={setDataUrl}
+          next={next}
+        />
       </RecipientCardListContainer>
     </Section>
   );
