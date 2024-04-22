@@ -6,6 +6,13 @@ const common = css`
   letter-spacing: -0.028rem;
 `;
 
+export const Bold32 = css`
+  ${common}
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 4.8rem;
+`;
+
 export const Bold28 = css`
   ${common}
   font-size: 2.8rem;

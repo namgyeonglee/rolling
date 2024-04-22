@@ -6,12 +6,15 @@ import deleteButton from "../../assets/deleteButton.png";
 import {
   Bold15,
   Bold18,
+  Bold24,
+  Bold32,
   Regular14,
   Regular15,
   Regular18,
 } from "../../styles/FontStyle";
 import { getFormatDate } from "../../utils/date";
 import { CardModal } from "./CardModal";
+import { fontFamily } from "./PostPage";
 
 const { baseUrl, endPoints } = API_INFO;
 
@@ -88,38 +91,57 @@ const ContentDiv = styled.div`
   color: var(--gray600);
   word-break: break-all;
 
-  & p,
-  u,
-  h1,
-  h2,
-  strong {
-    font-family: ${(props) => props.$font};
-  }
-
   @media screen and (min-width: 768px) {
     & p,
-    u,
-    h1,
-    h2 {
+    u {
       ${Regular18}
     }
-    & strong {
+    & h1,
+    h1 u {
+      ${Bold32}
+    }
+    & h2,
+    h2 u {
+      ${Bold24}
+    }
+    & strong,
+    strong u {
       ${Bold18}
     }
+
     height: 12rem;
   }
 
   @media screen and (max-width: 767px) {
     & p,
-    u,
-    h1,
-    h2 {
+    u {
       ${Regular15}
     }
-    & strong {
+    & h1,
+    h1 u {
+      ${Bold24}
+    }
+    & h2,
+    h2 u {
+      ${Bold18}
+    }
+    & strong,
+    strong u {
       ${Bold15}
     }
+
     height: 7.5rem;
+  }
+
+  & p,
+  u,
+  h1,
+  h1 u,
+  h2,
+  h2 u,
+  strong,
+  strong u {
+    font-family: ${(props) => fontFamily[props.$font]};
   }
 `;
 

@@ -20,7 +20,7 @@ const ShareItem = styled.div`
   }
 `;
 
-export function ShareModal({ shareKakao, toast }) {
+export function ShareModal({ name, shareKakao, toast }) {
   const copyUrl = () => {
     navigator.clipboard.writeText(window.location.href);
 
@@ -49,9 +49,13 @@ export function ShareModal({ shareKakao, toast }) {
     );
   };
 
+  const handleKakao = () => {
+    shareKakao(name);
+  };
+
   return (
     <StyledModal>
-      <ShareItem onClick={shareKakao}>카카오톡 공유</ShareItem>
+      <ShareItem onClick={handleKakao}>카카오톡 공유</ShareItem>
       <ShareItem onClick={copyUrl}>URL 공유</ShareItem>
     </StyledModal>
   );

@@ -198,53 +198,29 @@ const FlexDIv = styled.div`
 
 const { baseUrl, endPoints } = API_INFO;
 
-function shareMessage() {
-  // 피드 공유
-  /*
+function shareMessage(name) {
+  const url = "https://roll-ing.vercel.app" + location.pathname;
   Kakao?.Share?.sendDefault({
     objectType: "feed",
     content: {
-      title: "딸기 치즈 케익",
-      description: "#케익 #딸기 #삼평동 #카페 #분위기 #소개팅",
+      title: `지금 ${name}님의 롤링페이퍼에 메시지를 남겨보세요!`,
+      description: "",
       imageUrl:
-        "http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png",
+        "https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihZgN8ULKIy6WZtxccqejTT9mDdhiHORqpIz1TEWWsFe2c8pPyVk8cChLPwtJCMRXN7f_InrD6G-L_xsgXyJtDBwGAlSQdIeIzA=w1267-h1269",
       link: {
-        mobileWebUrl: "https://developers.kakao.com",
-        webUrl: "https://developers.kakao.com",
+        mobileWebUrl: url,
+        webUrl: url,
       },
-    },
-    social: {
-      likeCount: 286,
-      commentCount: 45,
-      sharedCount: 845,
     },
     buttons: [
       {
         title: "웹으로 보기",
         link: {
-          mobileWebUrl: "https://developers.kakao.com",
-          webUrl: "https://developers.kakao.com",
-        },
-      },
-      {
-        title: "앱으로 보기",
-        link: {
-          mobileWebUrl: "https://developers.kakao.com",
-          webUrl: "https://developers.kakao.com",
+          mobileWebUrl: url,
+          webUrl: url,
         },
       },
     ],
-  });
-  */
-
-  // 텍스트만 공유
-  Kakao.Share.sendDefault({
-    objectType: "text",
-    text: "기본 템플릿으로 제공되는 텍스트 템플릿은 텍스트를 최대 200자까지 표시할 수 있습니다. 텍스트 템플릿은 텍스트 영역과 하나의 기본 버튼을 가집니다. 임의의 버튼을 설정할 수도 있습니다. 여러 장의 이미지, 프로필 정보 등 보다 확장된 형태의 카카오톡 공유는 다른 템플릿을 이용해 보낼 수 있습니다.",
-    link: {
-      mobileWebUrl: "https://developers.kakao.com",
-      webUrl: "https://developers.kakao.com",
-    },
   });
 }
 
@@ -381,6 +357,7 @@ export function PostNav({ postData, postId }) {
               <ShareDiv ref={ShareRef}>
                 {openShareModal && (
                   <ShareModal
+                    name={postData?.name}
                     shareKakao={shareMessage}
                     toast={toast}
                   ></ShareModal>
