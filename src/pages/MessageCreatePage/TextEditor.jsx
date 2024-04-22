@@ -1,31 +1,24 @@
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import CustomToolbar from "./CustomToolbar";
 
 const modules = {
   toolbar: {
-    container: [
-      [{ header: [1, 2, false] }],
-      ["bold", "underline"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" },
-      ],
-    ],
+    container: "#toolbar",
   },
 };
+
+const formats = ["header", "bold", "underline"];
 
 function stripHTMLTags(str) {
   return str.replace(/<[^>]+>/g, "");
 }
 
-const formats = ["header", "bold", "underline", "list", "bullet", "indent"];
-
 export function TextEditor({ value, onChange, setIsEmpty }) {
   const onEdit = (e) => {
     onChange(e);
-    if (stripHTMLTags(e) === '') {
+    console.log(e);
+    if (stripHTMLTags(e) === "") {
       setIsEmpty(true);
     } else {
       setIsEmpty(false);
@@ -33,14 +26,17 @@ export function TextEditor({ value, onChange, setIsEmpty }) {
   };
 
   return (
-    <ReactQuill
-      style={{ height: "230px", marginBottom: "50px" }}
-      theme="snow"
-      placeholder="메세지를 남겨주세요."
-      modules={modules}
-      formats={formats}
-      value={value}
-      onChange={onEdit}
-    />
+    <>
+      <CustomToolbar />
+      <ReactQuill
+        style={{ height: "230px", borderBottomLeftRadius: "8px" }}
+        theme="snow"
+        placeholder="메세지를 남겨주세요."
+        modules={modules}
+        formats={formats}
+        value={value}
+        onChange={onEdit}
+      />
+    </>
   );
 }
