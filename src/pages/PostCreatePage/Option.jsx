@@ -12,7 +12,8 @@ const COLOR = [
 const OptionContainer = styled.div`
   gap: 1.6rem;
   margin: 0 auto;
-  @media screen and (min-width: 375px) {
+
+  @media screen and (min-width: 160px) {
     display: grid;
     grid-template-columns: 16.8rem 16.8rem;
   }

@@ -47,18 +47,6 @@ const Button = styled.button`
     outline: 2px solid var(--purple-900, #5603a7);
     background: var(--purple-800, #6e0ad1);
   }
-
-  @media screen and (min-width: 375px) {
-    width: 100%;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 100%;
-  }
-
-  @media screen and (min-width: 1248px) {
-    width: 100%;
-  }
 `;
 
 export default function SubmitButton({
