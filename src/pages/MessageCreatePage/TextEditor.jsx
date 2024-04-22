@@ -17,7 +17,6 @@ function stripHTMLTags(str) {
 export function TextEditor({ value, onChange, setIsEmpty }) {
   const onEdit = (e) => {
     onChange(e);
-    console.log(e);
     if (stripHTMLTags(e) === "") {
       setIsEmpty(true);
     } else {
