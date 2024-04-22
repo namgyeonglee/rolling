@@ -6,16 +6,55 @@ import { useApi, useFetch } from "./../../hooks/useFetch";
 import { Cards } from "./Cards";
 import { PostNav } from "./PostNav";
 
+const back = {
+  purple: "var(--purple200)",
+  beige: "var(--orange200)",
+  blue: "var(--blue200)",
+  green: "var(--green200)",
+};
+
+export const fontFamily = {
+  "Noto Sans": "NotoSans",
+  Pretendard: "Pretendard",
+  나눔명조: "NanumMyeongjo",
+  "나눔손글씨 손편지체": "NanumSon",
+};
+
 const Content = styled.main`
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: ${(props) => props.$backgroundColor};
+  background-color: ${(props) => back[props.$backgroundColor]};
   background-image: url(${(props) => props.$backgroundImageURL});
-  height: calc(100vh - 14.2rem);
+  background-size: cover;
+  height: calc(100vh - 13.1rem);
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  @media screen and (max-width: 767px) {
+    height: calc(100vh - 10.5rem);
+  }
+
+  @font-face {
+    font-family: "NotoSans";
+    src: url("/src/assets/fonts/NotoSans.ttf");
+  }
+
+  @font-face {
+    font-family: "Pretendard";
+    src: url("/src/assets/fonts/Pretendard.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "NanumMyeongjo";
+    src: url("/src/assets/fonts/NanumMyeongjo.ttf");
+  }
+
+  @font-face {
+    font-family: "NanumSon";
+    src: url("/src/assets/fonts/NanumSon.ttf");
   }
 `;
 
@@ -23,7 +62,7 @@ const DeleteButton = styled.button`
   ${Bold18}
   position: fixed;
   left: 50%;
-  bottom: 2.4px;
+  bottom: 2.4rem;
   transform: translateX(-50%);
   height: 56px;
   color: white;

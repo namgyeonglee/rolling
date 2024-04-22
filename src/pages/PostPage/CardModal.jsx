@@ -4,6 +4,8 @@ import { styled } from "styled-components";
 import {
   Bold15,
   Bold18,
+  Bold24,
+  Bold32,
   Regular14,
   Regular15,
   Regular16,
@@ -11,6 +13,7 @@ import {
 } from "../../styles/FontStyle";
 import { getFormatDate } from "./../../utils/date";
 import { HeaderDiv, ProfileImg, RelationDiv, StyledSpan } from "./Card";
+import { fontFamily } from "./PostPage";
 
 const ModalBack = styled.div`
   position: fixed;
@@ -78,38 +81,69 @@ const ContentDiv = styled.div`
     background-color: white;
   }
 
-  & p,
-  u,
-  h1,
-  h2,
-  strong {
-    font-family: ${(props) => props.$font} !important;
-  }
-
   @media screen and (min-width: 768px) {
     & p,
-    u,
-    h1,
-    h2 {
+    u {
       ${Regular18}
+    }
+    & h1 {
+      ${Bold32}
+    }
+    & h1 u {
+      ${Bold32}
+    }
+    & h2 {
+      ${Bold24}
+    }
+    & h2 u {
+      ${Bold24}
     }
     & strong {
       ${Bold18}
     }
+    strong u {
+      ${Bold18}
+    }
+
     height: 12rem;
   }
 
   @media screen and (max-width: 767px) {
     & p,
-    u,
-    h1,
-    h2 {
+    u {
       ${Regular15}
+    }
+    & h1 {
+      ${Bold24}
+    }
+    & h1 u {
+      ${Bold24}
+    }
+    & h2 {
+      ${Bold18}
+    }
+    & h2 u {
+      ${Bold18}
     }
     & strong {
       ${Bold15}
     }
+    & strong u {
+      ${Bold15}
+    }
+
     height: 7.5rem;
+  }
+
+  & p,
+  u,
+  h1,
+  h1 u,
+  h2,
+  h2 u,
+  strong,
+  strong u {
+    font-family: ${(props) => fontFamily[props.$font]};
   }
 `;
 
