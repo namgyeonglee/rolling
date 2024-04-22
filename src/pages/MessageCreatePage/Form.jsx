@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { API_INFO, putParams } from "../../api/api";
-import { useApi, useFetch } from "../../hooks/useFetch";
+import { useApi } from "../../hooks/useApi";
 import { Bold18, Bold24, Regular12, Regular16 } from "../../styles/FontStyle";
 import { TextEditor } from "./TextEditor";
 
@@ -136,7 +136,7 @@ const INITIAL_VALUES = {
 
 export function Form() {
   const url = API_INFO.baseUrl + API_INFO.endPoints.getProfileImages.url;
-  const { data } = useFetch({ url });
+  const { data } = useApi({ url, immediate: true });
   const defaultImg = data?.imageUrls[0];
 
   const [values, setValues] = useState(INITIAL_VALUES);
@@ -160,7 +160,7 @@ export function Form() {
     const { name, value } = e.target;
     handleChange(name, value);
   }
-  
+
   function handleErrorMessage(e) {
     const { value } = e.target;
     if (!value) {

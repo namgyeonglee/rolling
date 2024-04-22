@@ -8,7 +8,7 @@ const ProfileContainer = styled.div`
 const ImageBox = styled.div`
   width: 2.8rem;
   height: 2.8rem;
-  margin-right: ${(props) => (props.last ? "0" : "-2.4rem")};
+  margin-right: ${(props) => (props.$last ? "0" : "-2.4rem")};
 
   img {
     width: 100%;
@@ -16,7 +16,7 @@ const ImageBox = styled.div`
     border-radius: 14rem;
     border: 0.14rem solid #e3e3e3;
     position: relative;
-    z-index: ${(props) => (props.last ? "2" : "1")};
+    z-index: ${(props) => (props.$last ? "2" : "1")};
   }
 `;
 
@@ -39,7 +39,7 @@ const RemainBox = styled.div`
 export function ProfileUser({ src, last, peopleNum }) {
   return (
     <ProfileContainer>
-      <ImageBox last={last ? "true" : undefined}>
+      <ImageBox $last={last ? "true" : undefined}>
         <img src={src} alt="프로필 이미지" />
       </ImageBox>
       {peopleNum > 0 && (

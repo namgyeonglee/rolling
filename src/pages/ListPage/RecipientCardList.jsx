@@ -51,16 +51,16 @@ const LeftButton = styled(Button)`
   left: -2rem;
   z-index: 1;
   /*좌측 버튼이 첫 번째 순서일 때 숨김 여부를 조정하기 위해 visible 속성 추가 */
-  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
+  visibility: ${(props) => (props.$visible ? "visible" : "hidden")};
 `;
 
 const RightButton = styled(Button)`
   right: -2rem;
   z-index: 1;
-  visibility: visible;
+  visibility: ${(props) => (props.$visible ? "visible" : "hidden")};
 `;
 
-export function RecipientCardList({ recipients, setDataUrl, next, hasMore }) {
+export function RecipientCardList({ recipients, setDataUrl, next }) {
   const containerRef = useRef(null);
   const [showLeftButton, setShowLeftButton] = useState(false); // 변경: 좌측 버튼 숨김 여부 상태 추가
   const [showRightButton, setShowRightButton] = useState(true); // 변경: 우측 버튼 숨김 여부 상태 추가
@@ -84,6 +84,7 @@ export function RecipientCardList({ recipients, setDataUrl, next, hasMore }) {
   useEffect(() => {
     if (next && !showRightButton) {
       setDataUrl(next);
+      setShowRightButton(true);
     }
   }, [showRightButton]);
 
@@ -103,11 +104,11 @@ export function RecipientCardList({ recipients, setDataUrl, next, hasMore }) {
     <CarouselContainer>
       {recipients && recipients.length > 4 && (
         <>
-          <LeftButton onClick={handleLeftButton} visible={showLeftButton}>
+          <LeftButton onClick={handleLeftButton} $visible={showLeftButton}>
             {/* 좌측 버튼 숨김 여부 전달 */}
             <img src={arrowleft} alt="arrow_left" />
           </LeftButton>
-          <RightButton onClick={handleRightButton} visible={showRightButton}>
+          <RightButton onClick={handleRightButton} $visible={showRightButton}>
             {/* 우측 버튼 숨김 여부 전달 */}
             <img src={arrowright} alt="arrow_right" />
           </RightButton>
