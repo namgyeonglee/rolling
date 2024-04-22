@@ -8,7 +8,7 @@ import { MovePageButton } from "./MovePageButton";
 
 const PinkBackground = styled.div`
   background-color: #ffe6f1; /* 연한 핑크색 */
-  min-height: 100vh; /* 화면 전체 높이 */
+  min-height: 93.4vh; /* 화면 전체 높이 */
 `;
 
 const WaterDropAnimation = styled.div`
