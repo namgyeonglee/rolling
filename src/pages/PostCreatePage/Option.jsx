@@ -13,13 +13,13 @@ const OptionContainer = styled.div`
   gap: 1.6rem;
   margin: 0 auto;
 
-  @media screen and (min-width: 160px) {
-    display: grid;
-    grid-template-columns: 16.8rem 16.8rem;
-  }
-
   @media screen and (min-width: 768px) {
     display: flex;
+  }
+
+  @media screen and (max-width: 767px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
@@ -36,6 +36,11 @@ const OptionItem = styled.button`
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
+
+  @media screen and (min-width: 160px) {
+    width: 15.4rem;
+    height: 15.4rem;
+  }
 `;
 
 const CheckIcon = styled.img`

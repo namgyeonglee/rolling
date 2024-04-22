@@ -47,7 +47,7 @@ const FormStyle = styled.form`
     }
     &__option-box {
       display: flex;
-      // flex-direction: column;
+      flex-direction: column;
       gap: 4.5rem;
       margin-bottom: 6.9rem;
     }

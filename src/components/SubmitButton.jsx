@@ -28,6 +28,7 @@ const Button = styled.button`
   border: none;
   background: var(--purple-600, #9935ff);
   cursor: pointer;
+  width: 100%;
 
   &:disabled {
     background: var(--gray-300, #ccc);
