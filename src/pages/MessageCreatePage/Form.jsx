@@ -146,7 +146,7 @@ export function Form() {
 
   const navigate = useNavigate();
 
-  const [sendRequest] = useApi();
+  const { sendRequest } = useApi();
   const { postId } = useParams();
 
   function handleChange(name, value) {
