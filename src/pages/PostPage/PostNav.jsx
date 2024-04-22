@@ -7,7 +7,7 @@ import addIcon from "../../assets/images/addIcon.svg";
 import downArrow from "../../assets/images/downArrow.svg";
 import emogiIcon from "../../assets/images/emogiIcon.svg";
 import shareIcon from "../../assets/images/shareIcon.svg";
-import { useApi, useFetch } from "../../hooks/useFetch";
+import { useApi } from "../../hooks/useApi";
 import { useScript } from "../../hooks/useScript";
 import { Bold18, Bold28, Regular16, Regular18 } from "../../styles/FontStyle";
 import { EmojiModal } from "./EmojiModal";
@@ -258,16 +258,18 @@ export function PostNav({ postData, postId }) {
   const [scriptLoading, scriptError] = useScript(KakaoShare.src);
 
   const {
-    data: getData,
-    loading: getLoading,
-    error: getError,
-  } = useFetch({
+    sendRequest: reFetch,
+    data: emojiData,
+    loading: emojiLoading,
+    error: emojiError,
+  } = useApi({
     url:
       baseUrl +
       putParams(endPoints.getRecipientsReactions.url, postId) +
       "?limit=8",
+    immediate: true,
   });
-  const [sendRequest, data, loading, error] = useApi();
+  const { sendRequest } = useApi();
 
   const handleClick = () => {
     setOpenSelector(true);
@@ -281,7 +283,9 @@ export function PostNav({ postData, postId }) {
         emoji: e.emoji,
         type: "increase",
       },
-      callback: () => {},
+      callback: () => {
+        reFetch();
+      },
     });
   };
   const handleDownArrowClcik = () => {
@@ -336,9 +340,9 @@ export function PostNav({ postData, postId }) {
           </ProfileContainer>
           <StyledDiv $onlyPc={true} />
           <EmojiContainer>
-            {!getLoading &&
-              getError === null &&
-              getData.results.map((item, idx) => {
+            {!emojiLoading &&
+              emojiError === null &&
+              emojiData.results.map((item, idx) => {
                 if (idx < 3)
                   return (
                     <Emoji key={item.id}>
@@ -353,9 +357,9 @@ export function PostNav({ postData, postId }) {
                 {openEmogiModal && (
                   <EmojiModal
                     setOpenList={setOpenEmogiModal}
-                    getData={getData}
-                    getLoading={getLoading}
-                    getError={getError}
+                    getData={emojiData}
+                    getLoading={emojiLoading}
+                    getError={emojiError}
                   ></EmojiModal>
                 )}
               </EmojiPickerDiv>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { styled } from "styled-components";
 import { API_INFO, putParams } from "../../api/api";
-import { useApi, useFetch } from "./../../hooks/useFetch";
+import { useApi } from "../../hooks/useApi";
 import { Card } from "./Card";
 import { NewCard } from "./NewCard";
 
@@ -42,10 +42,18 @@ export function Cards({ postId, editable }) {
   const [getUrl, setGetUrl] = useState(
     baseUrl +
       putParams(endPoints.getRecipientsMessages.url, postId) +
-      "?limit=8",
+      "?limit=" +
+      (window.innerWidth > 1247
+        ? editable
+          ? 9
+          : 8
+        : editable
+          ? 8
+          : 7
+      ).toString(),
   );
 
-  const [sendRequest, data, loading, error] = useApi();
+  const { sendRequest } = useApi();
 
   const { ref, inView } = useInView({ threshold: 0.9 });
 
@@ -53,9 +61,9 @@ export function Cards({ postId, editable }) {
     data: getData,
     loading: getLoading,
     error: getError,
-  } = useFetch({
+  } = useApi({
     url: getUrl,
-    method: endPoints.getRecipientsMessages.method,
+    immediate: true,
   });
 
   useEffect(() => {
@@ -66,7 +74,15 @@ export function Cards({ postId, editable }) {
 
   useEffect(() => {
     if (inView && !getLoading && getError === null && getData.next) {
-      setGetUrl(getData.next.replace("?limit=8", "?limit=6"));
+      setGetUrl(
+        getData.next.replace(
+          getData.next.substring(
+            getData.next.indexOf("?limit"),
+            getData.next.indexOf("&offset"),
+          ),
+          "?limit=6",
+        ),
+      );
     }
   }, [inView]);
 

@@ -63,7 +63,6 @@ const PlusText = styled.span`
 `;
 
 export function Profiles({ items, length }) {
-  console.log(length);
   return (
     <Container>
       {length === 1 && (

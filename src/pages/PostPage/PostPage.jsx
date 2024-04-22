@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import { API_INFO, putParams } from "../../api/api";
+import { useApi } from "../../hooks/useApi";
 import { Bold18 } from "../../styles/FontStyle";
-import { useApi, useFetch } from "./../../hooks/useFetch";
 import { Cards } from "./Cards";
 import { PostNav } from "./PostNav";
 
@@ -47,20 +47,20 @@ export function PostPage({ editable }) {
   const { postId } = useParams();
   const navigator = useNavigate();
 
-  const { data, loading, error } = useFetch({
+  const { data, loading, error } = useApi({
     url: baseUrl + putParams(endPoints.getRecipientsById.url, postId),
-    method: endPoints.getRecipientsById.method,
+    immediate: true,
   });
-  const [sendRequest] = useApi();
+  const { sendRequest } = useApi({
+    url: baseUrl + putParams(endPoints.deleteRecipients.url, postId),
+    method: endPoints.deleteRecipients.method,
+    callback: () => {
+      navigator("/list");
+    },
+  });
 
   const handleDelete = () => {
-    sendRequest({
-      url: baseUrl + putParams(endPoints.deleteRecipients.url, postId),
-      method: endPoints.deleteRecipients.method,
-      callback: () => {
-        navigator("/list");
-      },
-    });
+    sendRequest();
   };
 
   return (
