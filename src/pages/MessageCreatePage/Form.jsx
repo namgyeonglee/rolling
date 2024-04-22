@@ -42,8 +42,14 @@ const Input = styled.input`
   padding: 12px 16px;
   border-radius: 8px;
   ${Regular16};
+  outline: none;
   border: 1px solid var(--gray300);
   color: var(--gray500);
+
+  &:hover,
+  &:focus {
+    border: 2px solid var(--gray500);
+  }
 
   &::placeholder {
     color: var(--gray500);
