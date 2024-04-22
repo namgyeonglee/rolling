@@ -62,19 +62,6 @@ const ErrorMessage = styled.p`
   margin-top: -8px;
 `;
 
-const Select = styled.select`
-  max-width: 50%;
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid var(--gray300);
-  ${Regular16};
-  color: var(--gray500);
-
-  @media screen and (max-width: 360px) {
-    max-width: 100%;
-  }
-`;
-
 const Submit = styled.input`
   width: 100%;
   padding: 14px 0;
