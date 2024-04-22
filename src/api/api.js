@@ -11,7 +11,10 @@ export const API_INFO = {
     deleteMessages: { url: "/5-10/messages/{param1}/", method: "DELETE" },
 
     //recipients
-    getRecipients: { url: "/5-10/recipients/", method: "GET" },
+    getRecipients: {
+      url: "/5-10/recipients/?limit={param1}&offset={param2}",
+      method: "GET",
+    },
     postRecipients: { url: "/5-10/recipients/", method: "POST" },
     getRecipientsById: { url: "/5-10/recipients/{param1}/", method: "GET" },
     deleteRecipients: { url: "/5-10/recipients/{param1}/", method: "DELETE" },

@@ -8,7 +8,7 @@ import { MovePageButton } from "./MovePageButton";
 
 const PinkBackground = styled.div`
   background-color: #ffe6f1; /* 연한 핑크색 */
-  min-height: 100vh; /* 화면 전체 높이 */
+  min-height: 93.4vh; /* 화면 전체 높이 */
 `;
 
 const WaterDropAnimation = styled.div`
@@ -51,7 +51,7 @@ export function ListPage() {
   //물방울 랜덤 생성
   const [randomPositions, setRandomPositions] = useState([]);
   const [dataUrl, setDataUrl] = useState(
-    putParams(API_INFO.baseUrl + API_INFO.endPoints.getRecipients.url, offset),
+    putParams(API_INFO.baseUrl + API_INFO.endPoints.getRecipients.url, 1000, 0),
   );
 
   //물방울 훅
@@ -97,10 +97,23 @@ export function ListPage() {
       });
       const sortedByRecent = [...newData].sort((a, b) => b.id - a.id);
 
-      setPopularRecipients((prevRecipients) => [
-        ...prevRecipients,
-        ...sortedByPopularity,
-      ]);
+      // 인기도에 따라 정렬된 데이터로 상태 업데이트
+      setPopularRecipients((prevRecipients) => {
+        const updatedRecipients = [...prevRecipients, ...sortedByPopularity];
+        return updatedRecipients.sort((a, b) => {
+          const sumA = a.topReactions.reduce(
+            (acc, curr) => acc + curr.count,
+            0,
+          );
+          const sumB = b.topReactions.reduce(
+            (acc, curr) => acc + curr.count,
+            0,
+          );
+          return sumB - sumA;
+        });
+      });
+
+      // 최근에 만든 롤링 페이퍼 데이터로 상태 업데이트
       setRecentRecipients((prevRecipients) => [
         ...prevRecipients,
         ...sortedByRecent,
@@ -125,6 +138,8 @@ export function ListPage() {
         setOffset((prevOffset) => prevOffset + 8);
       }
     });
+
+    // eslint-disable-next-line
 
     if (lastRecipientRef.current) {
       observer.current.observe(lastRecipientRef.current);
