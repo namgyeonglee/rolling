@@ -26,8 +26,6 @@ const OptionContainer = styled.div`
 const OptionItem = styled.button`
   display: flex;
   position: relative;
-  width: 16.8rem;
-  height: 16.8rem;
   flex-shrink: 0;
   border-radius: 1.6rem;
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -40,6 +38,11 @@ const OptionItem = styled.button`
   @media screen and (min-width: 160px) {
     width: 15.4rem;
     height: 15.4rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 16.8rem;
+    height: 16.8rem;
   }
 `;
 
