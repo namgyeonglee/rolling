@@ -15,7 +15,10 @@ export function Main() {
           <Route path="/list" element={<ListPage />} />
           <Route path="/post">
             <Route index element={<PostCreatePage />} />
-            <Route path=":postId" element={<PostPage />} />
+            <Route path=":postId">
+              <Route index element={<PostPage />} />
+              <Route path="edit" element={<PostPage editable={true} />} />
+            </Route>
             <Route path=":postId">
               <Route path="message" element={<MessageCreatePage />} />
             </Route>

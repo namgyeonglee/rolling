@@ -1,7 +1,16 @@
-import { useEffect, useRef } from 'react';
-import { styled } from 'styled-components';
-import { getFormatDate } from './../../utils/date';
-import { HeaderDiv, ProfileImg, RelationDiv, StyledSpan } from './Card';
+import { useEffect, useRef } from "react";
+import JsxParser from "react-jsx-parser";
+import { styled } from "styled-components";
+import {
+  Bold15,
+  Bold18,
+  Regular14,
+  Regular15,
+  Regular16,
+  Regular18,
+} from "../../styles/FontStyle";
+import { getFormatDate } from "./../../utils/date";
+import { HeaderDiv, ProfileImg, RelationDiv, StyledSpan } from "./Card";
 
 const ModalBack = styled.div`
   position: fixed;
@@ -10,17 +19,18 @@ const ModalBack = styled.div`
   bottom: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.8);
+  z-index: 998;
 `;
 
 const ModalDiv = styled.div`
   @media screen and (min-width: 768px) {
-    width: 600px;
-    height: 476px;
+    width: 60rem;
+    height: 47.6rem;
   }
 
   @media screen and (max-width: 767px) {
-    width: 400px;
-    height: 400px;
+    width: 40rem;
+    height: 40rem;
   }
   z-index: 999;
   position: fixed;
@@ -30,37 +40,35 @@ const ModalDiv = styled.div`
   background-color: white;
   border-radius: 16px;
   box-sizing: border-box;
-  padding: 40px;
+  padding: 4rem;
 `;
 
 const HeadGridDiv = styled.div`
   display: grid;
-  grid-template-columns: 56px 1fr 70px;
-  gap: 16px;
-  padding-bottom: 15px;
+  grid-template-columns: 5.6rem 1fr 7rem;
+  gap: 1.6rem;
+  padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--gray200);
   box-sizing: border-box;
 `;
 
 const DateDiv = styled.div`
+  ${Regular14}
   display: flex;
   align-items: center;
-  font-size: 14px;
   color: var(--gray400);
 `;
 
 const ContentDiv = styled.div`
-  margin-top: 20px;
-  height: 48%;
+  margin-top: 2rem;
+  height: 48% !important;
   color: var(--gray600);
-  font-size: 18px;
-  line-height: 30px;
   overflow-y: scroll;
   white-space: normal;
   word-break: break-all;
   box-sizing: border-box;
   &::-webkit-scrollbar {
-    width: 4px;
+    width: 0.4rem;
   }
   &::-webkit-scrollbar-thumb {
     background-color: var(--gray300);
@@ -69,27 +77,61 @@ const ContentDiv = styled.div`
   &::-webkit-scrollbar-track {
     background-color: white;
   }
+
+  & p,
+  u,
+  h1,
+  h2,
+  strong {
+    font-family: ${(props) => props.$font} !important;
+  }
+
+  @media screen and (min-width: 768px) {
+    & p,
+    u,
+    h1,
+    h2 {
+      ${Regular18}
+    }
+    & strong {
+      ${Bold18}
+    }
+    height: 12rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    & p,
+    u,
+    h1,
+    h2 {
+      ${Regular15}
+    }
+    & strong {
+      ${Bold15}
+    }
+    height: 7.5rem;
+  }
 `;
 
 const ModalBottom = styled.div`
   width: 100%;
-  height: 34%;
+  height: 34% !important;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   box-sizing: border-box;
-  padding-bottom: 20px;
+  padding-bottom: 2rem;
 `;
 
 const CloseButton = styled.button`
-  width: 120px;
-  height: 40px;
+  ${Regular16}
+  width: 12rem;
+  height: 4rem;
   border-radius: 6px;
   border: none;
   background-color: var(--purple600);
   color: white;
   cursor: pointer;
-  font-size: 16px;
 `;
 
 export function CardModal({
@@ -113,12 +155,12 @@ export function CardModal({
         setModalOpen(false);
       }
     };
-    document.addEventListener('mousedown', handler);
+    document.addEventListener("mousedown", handler);
 
     return () => {
-      document.removeEventListener('mousedown', handler);
+      document.removeEventListener("mousedown", handler);
     };
-  });
+  }, []);
 
   return (
     <ModalBack>
@@ -127,16 +169,18 @@ export function CardModal({
           <ProfileImg src={profileImageURL} />
           <HeaderDiv>
             <div>
-              <StyledSpan $size={'20px'}>From. </StyledSpan>
-              <StyledSpan $weigth={'bold'} $size={'20px'}>
+              <StyledSpan $size={"20px"}>From. </StyledSpan>
+              <StyledSpan $weigth={"bold"} $size={"20px"}>
                 {sender}
               </StyledSpan>
             </div>
             <RelationDiv $relation={relationship}>{relationship}</RelationDiv>
           </HeaderDiv>
-          <DateDiv>{getFormatDate(new Date(createdAt), '.')}</DateDiv>
+          <DateDiv>{getFormatDate(new Date(createdAt), ".")}</DateDiv>
         </HeadGridDiv>
-        <ContentDiv>{content}</ContentDiv>
+        <ContentDiv $font={font}>
+          <JsxParser jsx={content} />
+        </ContentDiv>
         <ModalBottom>
           <CloseButton onClick={closeModal}>확인</CloseButton>
         </ModalBottom>

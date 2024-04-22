@@ -4,7 +4,6 @@ import { API_INFO } from "../../api/api";
 import SubmitButton from "../../components/SubmitButton";
 import ToggleButton from "../../components/ToggleButton";
 import { useApi, useFetch } from "../../hooks/useFetch";
-import Header from "./Header";
 import ToInput from "./Input";
 import Selector from "./Option";
 import PostCreatePageForm from "./PostCreatePageForm";
@@ -57,7 +56,6 @@ function PostCreatePage() {
 
   return (
     <>
-      <Header></Header>
       <PostCreatePageForm>
         <div className="PostCreatePageForm__input-box">
           <Title>To.{postData.name}</Title>
