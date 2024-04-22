@@ -51,7 +51,7 @@ export function ListPage() {
   //물방울 랜덤 생성
   const [randomPositions, setRandomPositions] = useState([]);
   const [dataUrl, setDataUrl] = useState(
-    putParams(API_INFO.baseUrl + API_INFO.endPoints.getRecipients.url, offset),
+    putParams(API_INFO.baseUrl + API_INFO.endPoints.getRecipients.url, 1000, 0),
   );
 
   //물방울 훅
@@ -138,6 +138,8 @@ export function ListPage() {
         setOffset((prevOffset) => prevOffset + 8);
       }
     });
+
+    // eslint-disable-next-line
 
     if (lastRecipientRef.current) {
       observer.current.observe(lastRecipientRef.current);
