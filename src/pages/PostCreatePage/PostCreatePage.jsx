@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { API_INFO } from "../../api/api";
 import SubmitButton from "../../components/SubmitButton";
 import ToggleButton from "../../components/ToggleButton";
-import { useApi, useFetch } from "../../hooks/useFetch";
+import { useApi } from "../../hooks/useApi";
 import ToInput from "./Input";
 import Selector from "./Option";
 import PostCreatePageForm from "./PostCreatePageForm";
@@ -22,10 +22,16 @@ function PostCreatePage() {
   });
   const [createdId, setCreatedId] = useState(null);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
-  const { data, loading, error } = useFetch({
+  const { data, loading, error } = useApi({
     url: baseUrl + endPoints.getBackgroundImages.url,
+    immediate: true,
   });
-  const [sendRequest, apiData, apiLoading, apiError] = useApi();
+  const {
+    sendRequest,
+    data: apiData,
+    loading: apiLoading,
+    error: apiError,
+  } = useApi();
 
   const navigate = useNavigate();
 

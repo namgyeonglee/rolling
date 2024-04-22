@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { API_INFO, putParams } from "../../api/api"; // API_INFO 및 putParams 가져오기
-import { useFetch } from "../../hooks/useFetch"; // useFetch 훅 가져오기
+import { useApi } from "../../hooks/useApi";
 import { ListContent } from "./ListContent";
 import { ListGlobalStyles } from "./ListGlobalStyle";
 import { MovePageButton } from "./MovePageButton";
@@ -75,12 +75,13 @@ export function ListPage() {
 
   // 오류 처리 함수
   const handleError = (error) => {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching data: ", error);
   };
 
-  const { data, loading, error } = useFetch({
+  const { data, loading, error } = useApi({
     // useFetch 훅 적용
     url: dataUrl,
+    immediate: true,
     errorCallback: handleError,
   });
   const observer = useRef();
