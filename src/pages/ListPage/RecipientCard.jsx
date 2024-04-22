@@ -165,6 +165,7 @@ const Division = styled.hr`
 
   @media (min-width: ${DISPLAY_SIZE.MIN_MOBILE}px) and (max-width: ${DISPLAY_SIZE.MAX_MOBILE}px) {
     width: 16.2rem;
+    margin-top: -2rem;
   }
 `;
 
@@ -176,7 +177,6 @@ const EmojiGroup = styled.div`
 
   @media (min-width: ${DISPLAY_SIZE.MIN_MOBILE}px) and (max-width: ${DISPLAY_SIZE.MAX_MOBILE}px) {
     gap: 0.4rem;
-    margin-top: -0.35rem;
   }
 `;
 
