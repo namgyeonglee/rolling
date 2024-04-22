@@ -97,10 +97,23 @@ export function ListPage() {
       });
       const sortedByRecent = [...newData].sort((a, b) => b.id - a.id);
 
-      setPopularRecipients((prevRecipients) => [
-        ...prevRecipients,
-        ...sortedByPopularity,
-      ]);
+      // 인기도에 따라 정렬된 데이터로 상태 업데이트
+      setPopularRecipients((prevRecipients) => {
+        const updatedRecipients = [...prevRecipients, ...sortedByPopularity];
+        return updatedRecipients.sort((a, b) => {
+          const sumA = a.topReactions.reduce(
+            (acc, curr) => acc + curr.count,
+            0,
+          );
+          const sumB = b.topReactions.reduce(
+            (acc, curr) => acc + curr.count,
+            0,
+          );
+          return sumB - sumA;
+        });
+      });
+
+      // 최근에 만든 롤링 페이퍼 데이터로 상태 업데이트
       setRecentRecipients((prevRecipients) => [
         ...prevRecipients,
         ...sortedByRecent,
