@@ -21,6 +21,7 @@ const HeaderRightDiv = styled.div`
 
   @media screen and (max-width: 767px) {
     justify-content: space-between;
+    margin: 0 0.4rem;
   }
 `;
 
@@ -47,7 +48,7 @@ const StyledDiv = styled.div`
   width: 0;
   height: 2.8rem;
   border-right: 0.1rem solid var(--gray200);
-  margin: 0 1.6rem;
+  margin: 0 1.5rem;
 
   @media screen and (max-width: 1247px) {
     ${(props) => {
@@ -89,6 +90,10 @@ const RelativeDiv = styled.div`
   align-items: center;
   position: relative;
   margin-right: 1.2rem;
+
+  @media screen and (max-width: 767px) {
+    margin-right: 0;
+  }
 `;
 
 const EmojiContainer = styled.div`
@@ -96,9 +101,16 @@ const EmojiContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 
   @media screen and (max-width: 1248px) {
     justify-content: flex-start;
+  }
+
+  @media screen and (max-width: 747px) {
+    max-width: 241px;
+    width: 100%;
+    justify-content: flex-end;
   }
 `;
 
@@ -108,11 +120,11 @@ const Emoji = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 32px;
-  width: 6.6rem;
+  width: 6.3rem;
   height: 3.6rem;
   background-color: rgb(0, 0, 0, 0.54);
   color: white;
-  margin-right: 0.8rem;
+  margin-right: ${(props) => props.$margin};
 `;
 
 const AddIconImg = styled.img`
@@ -143,6 +155,10 @@ const ProfileContainer = styled.div`
   @media screen and (max-width: 1247px) {
     display: none;
   }
+
+  @media screen and (max-width: 767px) {
+    width: 200px;
+  }
 `;
 
 const ProfileImgContainer = styled.div`
@@ -158,17 +174,16 @@ const HeaderContainer = styled.div`
 const StyledHeader = styled.header`
   width: 100%;
   height: 6.8rem;
-  padding: 0 2.4rem;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
 
   @media screen and (min-width: 1248px) {
     width: 1200px;
-    padding: 0 0;
   }
 
   @media screen and (max-width: 1247px) {
+    padding: 0 2.4rem;
   }
 
   @media screen and (max-width: 767px) {
@@ -176,6 +191,7 @@ const StyledHeader = styled.header`
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
+    padding: 0 0;
   }
 `;
 
@@ -188,6 +204,7 @@ const NameDiv = styled.div`
 
   @media screen and (max-width: 767px) {
     ${Bold18}
+    margin-left: 2.4rem;
   }
 `;
 
@@ -321,7 +338,7 @@ export function PostNav({ postData, postId }) {
               emojiData.results.map((item, idx) => {
                 if (idx < 3)
                   return (
-                    <Emoji key={item.id}>
+                    <Emoji key={item.id} $margin={idx === 2 ? "0" : "0.8rem"}>
                       {item.emoji} {item.count}
                     </Emoji>
                   );
