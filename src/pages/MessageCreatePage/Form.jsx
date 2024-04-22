@@ -199,7 +199,7 @@ export function Form() {
         team: "5-10",
         recipientId: postId,
         sender: values.sender,
-        profileImageURL: values.img,
+        profileImageURL: values.img ? values.img : defaultImg,
         relationship: values.relationship,
         content: values.content,
         font: values.font,
