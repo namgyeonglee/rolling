@@ -42,3 +42,8 @@ export function putParams(url, ...args) {
 
   return url;
 }
+
+export const KakaoShare = {
+  src: "https://t1.kakaocdn.net/kakao_js_sdk/2.7.1/kakao.min.js",
+  javaScriptKey: "3d9ed3d2882a865e3a41390794c8ec0d",
+};

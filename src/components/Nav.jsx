@@ -9,6 +9,19 @@ const StyledNav = styled.nav`
   top: 0;
   width: 100%;
   border-bottom: 1px solid #cccccc;
+
+  @media screen and (max-width: 767px) {
+    ${() => {
+      if (
+        window.location.pathname.includes("/post/") &&
+        window.location.pathname.length > "/post/".length
+      ) {
+        return `
+          display: none;
+        `;
+      }
+    }}
+  }
 `;
 
 const StyledGnb = styled.div`

@@ -13,7 +13,9 @@
     "emoji-picker-react": "^4.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
     "react-intersection-observer": "^9.8.2",
+    "react-jsx-parser": "^1.29.0",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.22.3",
     "styled-components": "^6.1.8"
