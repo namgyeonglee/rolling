@@ -8,7 +8,7 @@ const Section = styled.section`
   width: 100%;
   max-width: 118rem;
   margin: 0 auto;
-  margin-top: 5rem;
+  padding-top: 5rem;
 
   @media (min-width: ${DISPLAY_SIZE.MIN_TABLET}px) and (max-width: ${DISPLAY_SIZE.MAX_TABLET}px) {
     max-width: calc(100% - 48px);
@@ -20,6 +20,17 @@ const Section = styled.section`
   }
   @media (min-width: ${DISPLAY_SIZE.MIN_MOBILE}px) and (max-width: ${DISPLAY_SIZE.MAX_MOBILE}px) {
     max-width: calc(100% - 20px);
+    margin-left: 24px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @media (max-width: 359px) {
+    max-width: calc(100% - 10px);
+    margin-left: 24px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
@@ -43,14 +54,18 @@ const Title = styled.h2`
   }
 `;
 
-export function ListContent({ title, recipients }) {
+export function ListContent({ title, recipients, setDataUrl, next }) {
   return (
     <Section>
       <TitleContainer>
         <Title>{title}</Title>
       </TitleContainer>
       <RecipientCardListContainer>
-        <RecipientCardList recipients={recipients} />
+        <RecipientCardList
+          recipients={recipients}
+          setDataUrl={setDataUrl}
+          next={next}
+        />
       </RecipientCardListContainer>
     </Section>
   );

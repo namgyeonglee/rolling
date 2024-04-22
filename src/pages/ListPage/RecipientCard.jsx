@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { Bold24, Regular16 } from "../../styles/FontStyle";
+import { Bold24, Regular14, Regular16 } from "../../styles/FontStyle";
 import { DISPLAY_SIZE } from "../../styles/SizeSet";
 import { WrittenByIcons } from "./WrittenByIcons";
 
@@ -147,6 +147,10 @@ const WriterText = styled.span`
   color: ${({ $backgroundImage }) =>
     WriterTextColor({ backgroundImage: $backgroundImage })};
   ${Regular16}
+
+  @media (min-width: ${DISPLAY_SIZE.MIN_MOBILE}px) and (max-width: ${DISPLAY_SIZE.MAX_MOBILE}px) {
+    ${Regular14}
+  }
 `;
 
 const WriterNumText = styled.span`
@@ -158,6 +162,10 @@ const Division = styled.hr`
   width: 22.7rem;
   z-index: 1;
   border: 0.1rem solid #0000001f;
+
+  @media (min-width: ${DISPLAY_SIZE.MIN_MOBILE}px) and (max-width: ${DISPLAY_SIZE.MAX_MOBILE}px) {
+    width: 16.2rem;
+  }
 `;
 
 const EmojiGroup = styled.div`
@@ -165,6 +173,11 @@ const EmojiGroup = styled.div`
   gap: 0.8rem;
   margin-top: 1.6rem;
   z-index: 1;
+
+  @media (min-width: ${DISPLAY_SIZE.MIN_MOBILE}px) and (max-width: ${DISPLAY_SIZE.MAX_MOBILE}px) {
+    gap: 0.4rem;
+    margin-top: -0.35rem;
+  }
 `;
 
 const EmojiCount = styled.div`
@@ -179,12 +192,22 @@ const EmojiCount = styled.div`
   background: rgba(0, 0, 0, 0.54);
   color: var(--white);
   ${Regular16}
+
+  @media (min-width: ${DISPLAY_SIZE.MIN_MOBILE}px) and (max-width: ${DISPLAY_SIZE.MAX_MOBILE}px) {
+    height: 3.2rem;
+    padding: 0.6rem 0.8rem;
+    ${Regular14}
+  }
 `;
 
 const Emoji = styled.span`
   padding: 0 0.2rem;
   margin-right: 0.2rem;
   font-size: 1.6rem;
+
+  @media (min-width: ${DISPLAY_SIZE.MIN_MOBILE}px) and (max-width: ${DISPLAY_SIZE.MAX_MOBILE}px) {
+    margin-right: 0;
+  }
 `;
 
 export function RecipientCard({ recipient }) {
