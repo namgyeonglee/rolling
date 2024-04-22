@@ -52,12 +52,18 @@ const LeftButton = styled(Button)`
   z-index: 1;
   /*좌측 버튼이 첫 번째 순서일 때 숨김 여부를 조정하기 위해 visible 속성 추가 */
   visibility: ${(props) => (props.$visible ? "visible" : "hidden")};
+  @media (max-width: ${DISPLAY_SIZE.MAX_TABLET}px) {
+    display: none; // 테블릿 및 모바일에서 숨김
+  }
 `;
 
 const RightButton = styled(Button)`
   right: -2rem;
   z-index: 1;
   visibility: ${(props) => (props.$visible ? "visible" : "hidden")};
+  @media (max-width: ${DISPLAY_SIZE.MAX_TABLET}px) {
+    display: none; // 테블릿 및 모바일에서 숨김
+  }
 `;
 
 export function RecipientCardList({ recipients, setDataUrl, next }) {
