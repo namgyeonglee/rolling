@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/images/logo.svg";
 import rolling from "../assets/images/rolling.svg";
@@ -59,6 +59,11 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 export function Nav() {
+  const location = useLocation();
+
+  const showMakeButton =
+    location.pathname === "/list" || location.pathname === "/" ? true : false;
+
   return (
     <StyledNav>
       <StyledGnb>
@@ -67,7 +72,7 @@ export function Nav() {
           <StyledLogo src={rolling} alt="rolling logo" />
         </StyledLink>
         <StyledLink to="/post">
-          <StyledButton>롤링 페이퍼 만들기</StyledButton>
+          {showMakeButton && <StyledButton>롤링 페이퍼 만들기</StyledButton>}
         </StyledLink>
       </StyledGnb>
     </StyledNav>

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { API_INFO, putParams } from "../../api/api";
 import { useApi } from "../../hooks/useApi";
 import { Bold18, Bold24, Regular12, Regular16 } from "../../styles/FontStyle";
+import { CustomSelect } from "./CustomSelect";
 import { TextEditor } from "./TextEditor";
 
 const StyledForm = styled.form`
@@ -41,8 +42,14 @@ const Input = styled.input`
   padding: 12px 16px;
   border-radius: 8px;
   ${Regular16};
+  outline: none;
   border: 1px solid var(--gray300);
   color: var(--gray500);
+
+  &:hover,
+  &:focus {
+    border: 2px solid var(--gray500);
+  }
 
   &::placeholder {
     color: var(--gray500);
@@ -53,19 +60,6 @@ const ErrorMessage = styled.p`
   ${Regular12};
   color: var(--error);
   margin-top: -8px;
-`;
-
-const Select = styled.select`
-  max-width: 50%;
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid var(--gray300);
-  ${Regular16};
-  color: var(--gray500);
-
-  @media screen and (max-width: 360px) {
-    max-width: 100%;
-  }
 `;
 
 const Submit = styled.input`
@@ -126,22 +120,28 @@ const Description = styled.p`
   ${Regular16};
 `;
 
+const INITIAL_RELATIONSHIP_VALUE = "지인";
+const INITIAL_FONT_VALUE = "Noto Sans";
+
 const INITIAL_VALUES = {
   sender: "",
   img: "",
-  relationship: "지인",
+  relationship: INITIAL_RELATIONSHIP_VALUE,
   content: "",
-  font: "Noto Sans",
+  font: INITIAL_FONT_VALUE,
 };
 
+const url = API_INFO.baseUrl + API_INFO.endPoints.getProfileImages.url;
+
 export function Form() {
-  const url = API_INFO.baseUrl + API_INFO.endPoints.getProfileImages.url;
   const { data } = useApi({ url, immediate: true });
   const defaultImg = data?.imageUrls[0];
 
   const [values, setValues] = useState(INITIAL_VALUES);
   const [error, setError] = useState(false);
   const [content, setContent] = useState("");
+  const [relationship, setRelationship] = useState(INITIAL_RELATIONSHIP_VALUE);
+  const [font, setFont] = useState(INITIAL_FONT_VALUE);
   const [isEmpty, setIsEmpty] = useState(true);
 
   const navigate = useNavigate();
@@ -181,10 +181,16 @@ export function Form() {
   }
 
   useEffect(() => {
-    const name = "content";
-    const value = content;
-    handleChange(name, value);
+    handleChange("content", content);
   }, [content]);
+
+  useEffect(() => {
+    handleChange("relationship", relationship);
+  }, [relationship]);
+
+  useEffect(() => {
+    handleChange("font", font);
+  }, [font]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -199,7 +205,7 @@ export function Form() {
         team: "5-10",
         recipientId: postId,
         sender: values.sender,
-        profileImageURL: values.img,
+        profileImageURL: values.img ? values.img : defaultImg,
         relationship: values.relationship,
         content: values.content,
         font: values.font,
@@ -269,16 +275,12 @@ export function Form() {
 
       <FormContent>
         <Label htmlFor="relationship">상대와의 관계</Label>
-        <Select
+        <CustomSelect
           name="relationship"
-          value={values.relationship}
-          onChange={handleInputChange}
-        >
-          <option value="지인">지인</option>
-          <option value="친구">친구</option>
-          <option value="동료">동료</option>
-          <option value="가족">가족</option>
-        </Select>
+          value={relationship}
+          onChange={setRelationship}
+          options={["지인", "친구", "동료", "가족"]}
+        />
       </FormContent>
 
       <FormContent>
@@ -293,12 +295,17 @@ export function Form() {
 
       <FormContent>
         <Label htmlFor="font">폰트 선택</Label>
-        <Select name="font" value={values.font} onChange={handleInputChange}>
-          <option value="Noto Sans">Noto Sans</option>
-          <option value="Pretendard">Pretendard</option>
-          <option value="나눔명조">나눔명조</option>
-          <option value="나눔손글씨 손편지체">나눔손글씨 손편지체</option>
-        </Select>
+        <CustomSelect
+          name="font"
+          value={font}
+          onChange={setFont}
+          options={[
+            "Noto Sans",
+            "Pretendard",
+            "나눔명조",
+            "나눔손글씨 손편지체",
+          ]}
+        />
       </FormContent>
 
       <Submit
