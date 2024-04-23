@@ -14,10 +14,11 @@ const ToastDiv = styled.div`
   grid-template-columns: 2.4rem 1fr 2.4rem;
   gap: 1rem;
   align-items: center;
-  position: absolute;
-  left: 0;
-  top: 0;
-  transform: translateX(-10%);
+  transform: translateX(-19%);
+  @media screen and (max-width: 767px) {
+    width: 35rem;
+    transform: translateX(-2.8%);
+  }
 `;
 
 const MsgDiv = styled.div`

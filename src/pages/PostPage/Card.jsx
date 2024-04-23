@@ -187,6 +187,7 @@ export function Card({
   sendRequest,
   setCardData,
   editable,
+  reFetch,
 }) {
   const [modalOpen, setModalOpen] = useState(false);
   const showModal = () => {
@@ -199,7 +200,10 @@ export function Card({
       url: baseUrl + putParams(endPoints.deleteMessages.url, id),
       method: endPoints.deleteMessages.method,
       callback: () => {
+        console.log("test");
         setCardData((prev) => prev.filter((item) => item.id !== id));
+        console.log(reFetch);
+        reFetch();
       },
     });
   };
