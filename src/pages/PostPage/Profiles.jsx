@@ -65,16 +65,27 @@ const PlusText = styled.span`
 export function Profiles({ items, length }) {
   return (
     <Container>
-      {items?.map((item, idx) => {
-        return (
-          <Item
-            $position={4 - (length - 1) + idx}
-            $back={item.profileImageURL}
-          ></Item>
-        );
-      })}
+      {length === 1 && (
+        <Item $position={4} $back={items[0].profileImageURL}></Item>
+      )}
+      {length === 2 && (
+        <>
+          <Item $position={3} $back={items[0].profileImageURL}></Item>
+          <Item $position={4} $back={items[1].profileImageURL}></Item>
+        </>
+      )}
+      {length === 3 && (
+        <>
+          <Item $position={2} $back={items[0].profileImageURL}></Item>
+          <Item $position={3} $back={items[1].profileImageURL}></Item>
+          <Item $position={4} $back={items[2].profileImageURL}></Item>
+        </>
+      )}
       {length >= 4 && (
         <>
+          <Item $position={1} $back={items[0].profileImageURL}></Item>
+          <Item $position={2} $back={items[1].profileImageURL}></Item>
+          <Item $position={3} $back={items[2].profileImageURL}></Item>
           <Item $position={4}>
             <PlusText>+{length - 3}</PlusText>
           </Item>
