@@ -45,10 +45,10 @@ const EmojiEach = styled.div`
   background-color: rgb(0, 0, 0, 0.54);
   color: #fff;
   height: 3.8rem;
+  letter-spacing: 0.2rem;
 
   @media screen and (max-width: 767px) {
     ${Regular14}
-    letter-spacing: 0.2rem;
     width: 5.3rem;
     height: 2.8rem;
   }

@@ -39,22 +39,25 @@ const Content = styled.main`
 
   @font-face {
     font-family: "NotoSans";
-    src: url("/src/assets/fonts/NotoSans.ttf");
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2)
+      format("woff2");
   }
 
   @font-face {
     font-family: "Pretendard";
-    src: url("/src/assets/fonts/Pretendard.woff2") format("woff2");
+    src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.eot");
   }
 
   @font-face {
     font-family: "NanumMyeongjo";
-    src: url("/src/assets/fonts/NanumMyeongjo.ttf");
+    src: url("https://cdn.jsdelivr.net/gh/wizfile/font/NanumMyeongjo.woff")
+      format("woff");
   }
 
   @font-face {
     font-family: "NanumSon";
-    src: url("/src/assets/fonts/NanumSon.ttf");
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff")
+      format("woff");
   }
 `;
 
