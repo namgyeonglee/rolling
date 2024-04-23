@@ -13,14 +13,12 @@ const { baseUrl, endPoints } = API_INFO;
 
 function PostCreatePage() {
   const [isActive, setIsActive] = useState(false);
-  const [backgroundImages, setBackgroundImages] = useState([]);
   const [postData, setPostData] = useState({
     team: "5-10",
     name: "",
     backgroundColor: "beige",
     backgroundImageURL: null,
   });
-  const [createdId, setCreatedId] = useState(null);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
   const { data, loading, error } = useApi({
     url: baseUrl + endPoints.getBackgroundImages.url,

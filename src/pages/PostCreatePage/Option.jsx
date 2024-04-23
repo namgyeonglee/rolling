@@ -12,6 +12,10 @@ const COLOR = [
 const OptionContainer = styled.div`
   gap: 1.6rem;
   margin: 0 auto;
+  @media screen and (min-width: 375px) {
+    display: grid;
+    grid-template-columns: 16.8rem 16.8rem;
+  }
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -20,12 +24,15 @@ const OptionContainer = styled.div`
   @media screen and (max-width: 767px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
   }
 `;
 
 const OptionItem = styled.button`
   display: flex;
   position: relative;
+  width: 16.8rem;
+  height: 16.8rem;
   flex-shrink: 0;
   border-radius: 1.6rem;
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -35,15 +42,9 @@ const OptionItem = styled.button`
   background-size: cover;
   cursor: pointer;
 
-  @media screen and (min-width: 160px) {
-    width: 15.4rem;
-    height: 15.4rem;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 16.8rem;
-    height: 16.8rem;
-  }
+  @media screen and (max-width: 767px) {
+    width : 15.4rem;
+    height : 15.4rem;
 `;
 
 const CheckIcon = styled.img`

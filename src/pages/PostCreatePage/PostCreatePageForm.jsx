@@ -1,17 +1,13 @@
 import styled from "styled-components";
 
 const FormStyle = styled.form`
-  padding: 5.7rem 2.4rem;
+  padding: 5.7rem 2rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 
   @media screen and (min-width: 768px) {
-    width: 100%;
-    max-width: fit-content;
-  }
-
-  @media screen and (min-width: 1248px) {
+    padding: 5.7rem 2.4rem;
     width: 100%;
     max-width: fit-content;
   }
