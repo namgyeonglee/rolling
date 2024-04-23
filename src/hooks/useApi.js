@@ -7,6 +7,7 @@ export const useApi = (
     body,
     callback,
     errorCallback,
+    finalCallback,
     immediate = false,
   } = {
     url: null,
@@ -14,6 +15,7 @@ export const useApi = (
     headers: null,
     body: null,
     callback: null,
+    finalCallback: null,
     errorCallback: null,
     immediate: false,
   },
@@ -50,20 +52,24 @@ export const useApi = (
       if (body) option.body = JSON.stringify(body);
 
       let response = null;
+      let result = null;
 
       try {
         response = await fetch(url, option);
+
         if (method !== "DELETE") {
-          const result = await response.json();
+          result = await response.json();
 
           setData(result);
         } else setData(response);
+
+        if (response?.ok && callback) callback(result ? result : response);
       } catch (e) {
         setError(e);
         if (errorCallback) errorCallback(e);
       } finally {
         setLoading(false);
-        if (response?.ok && callback) callback();
+        if (finalCallback) finalCallback();
       }
     },
     [url, method, headers, body, callback, errorCallback],

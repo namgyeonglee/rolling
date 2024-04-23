@@ -89,7 +89,12 @@ export function PostPage({ editable }) {
   const { postId } = useParams();
   const navigator = useNavigate();
 
-  const { data, loading, error } = useApi({
+  const {
+    sendRequest: reFetch,
+    data,
+    loading,
+    error,
+  } = useApi({
     url: baseUrl + putParams(endPoints.getRecipientsById.url, postId),
     immediate: true,
   });
@@ -113,7 +118,7 @@ export function PostPage({ editable }) {
           $backgroundImageURL={data.backgroundImageURL}
           $backgroundColor={data.backgroundColor}
         >
-          <Cards postId={postId} editable={editable} />
+          <Cards postId={postId} editable={editable} reFetch={reFetch} />
           {editable && (
             <DeleteButton onClick={handleDelete}>삭제하기</DeleteButton>
           )}

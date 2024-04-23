@@ -37,7 +37,7 @@ const EmptyDiv = styled.div`
 
 const { baseUrl, endPoints } = API_INFO;
 
-export function Cards({ postId, editable }) {
+export function Cards({ postId, editable, reFetch }) {
   const [cardData, setCardData] = useState([]);
   const [getUrl, setGetUrl] = useState(
     baseUrl +
@@ -103,6 +103,7 @@ export function Cards({ postId, editable }) {
             sendRequest={sendRequest}
             setCardData={setCardData}
             editable={editable}
+            reFetch={reFetch}
           />
         ))}
       </GridDiv>

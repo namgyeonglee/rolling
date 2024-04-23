@@ -39,10 +39,9 @@ export function ShareModal({ name, shareKakao, toast }) {
       {
         duration: 5000,
         style: {
-          boxSizing: "border-box",
-          width: "52.4rem",
           height: "6.4rem",
           padding: "0 0",
+          margin: "0 0",
           position: "relative",
         },
       },
