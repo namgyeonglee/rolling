@@ -139,8 +139,6 @@ export function ListPage() {
       }
     });
 
-    // eslint-disable-next-line
-
     if (lastRecipientRef.current) {
       observer.current.observe(lastRecipientRef.current);
     }
